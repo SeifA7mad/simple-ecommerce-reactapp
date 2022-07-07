@@ -1,0 +1,22 @@
+.icon {
+  width: 2rem;
+}
+
+.arrow {
+  position: absolute;
+  right: -0.5rem;
+  bottom: 10px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

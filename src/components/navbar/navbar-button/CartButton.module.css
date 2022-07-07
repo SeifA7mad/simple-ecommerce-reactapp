@@ -1,0 +1,17 @@
+.icon {
+  width: 1.5rem;
+}
+
+.badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  font-weight: 500;
+  position: absolute;
+  right: -0.5rem;
+  top: -0.5rem;
+  padding: 0;
+  padding-bottom: 2px;
+}

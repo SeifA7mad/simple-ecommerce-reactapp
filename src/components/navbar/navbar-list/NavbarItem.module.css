@@ -1,0 +1,36 @@
+.navbarItem {
+  list-style: none;
+  padding: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.navbarItem a {
+  font-family: sans-serif;
+  font-size: large;
+  font-weight: 100;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+
+.navbarItem a:hover {
+  color: #5ece7b;
+}
+
+.navbarItem a.active {
+  color: #5ece7b;
+  filter: drop-shadow(0px, 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.navbarItem a.active::after {
+    background-color: #5ece7b; 
+    bottom: -1.2rem;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    width: 140%;
+}
