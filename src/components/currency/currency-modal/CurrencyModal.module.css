@@ -1,12 +1,12 @@
 .currencyModal {
-    width: 5rem;
+    width: 7rem;
     left: 50%;
     top: 3rem;
 }
 
 @media (min-width: 768px) {
   .currencyModal {
-    left: calc(50% + 36rem);
+    left: calc(50% + 34rem);
   }
 }
 
