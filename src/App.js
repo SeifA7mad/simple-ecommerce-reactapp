@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
 import Category from './pages/category-page/Category';
@@ -14,6 +14,7 @@ class App extends Component {
           <Route path='/category/:categoryName' element={<Category />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/product/:id' element={<Product />} />
+          <Route path='/' element={<Navigate to='/category/women' />} />
         </Routes>
       </Layout>
     );

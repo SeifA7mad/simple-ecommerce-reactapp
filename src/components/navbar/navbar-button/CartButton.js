@@ -10,7 +10,7 @@ class CartButton extends Component {
     // access context to get cart items
   render() {
     return (
-      <Button onClick={this.props.click}>
+      <Button onClick={this.props.onClick}>
         <CartIcon style={classes.icon} />
         <span className={classes.badge}>{2}</span>
       </Button>

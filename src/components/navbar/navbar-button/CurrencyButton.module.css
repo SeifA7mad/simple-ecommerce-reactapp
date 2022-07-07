@@ -12,11 +12,43 @@
 }
 
 .up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
+  animation: animate-up 1s linear forwards;
 }
 
 .down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
+  animation: animate-down 1s linear forwards;
+}
+
+@keyframes animate-up {
+  0% {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+}
+
+@keyframes animate-down {
+  0% {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
 }
