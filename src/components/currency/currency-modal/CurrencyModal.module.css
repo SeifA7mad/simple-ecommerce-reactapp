@@ -1,0 +1,26 @@
+.currencyModal {
+    width: 5rem;
+    left: 50%;
+    top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .currencyModal {
+    left: calc(50% + 36rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* .currencyModal {
+    width: 5rem;
+    left: calc(50% + 33rem);
+  } */
+}
+
+@media (min-width: 1280px) {
+  /* .currencyModal {
+    width: 5rem;
+    left: calc(50% + 33rem);
+  } */
+}
+

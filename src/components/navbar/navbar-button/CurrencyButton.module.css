@@ -12,11 +12,11 @@
 }
 
 .up {
-  animation: animate-up 1s linear forwards;
+  animation: animate-up 0.5s linear forwards;
 }
 
 .down {
-  animation: animate-down 1s linear forwards;
+  animation: animate-down 0.5s linear forwards;
 }
 
 @keyframes animate-up {

@@ -10,7 +10,7 @@ class CurrencyButton extends Component {
 
   render() {
     return (
-      <Button onClick={this.props.click}>
+      <Button onClick={this.props.onClick}>
         <CurrencyIcon style={classes.icon} />
         <span
           className={`${classes.arrow} ${
