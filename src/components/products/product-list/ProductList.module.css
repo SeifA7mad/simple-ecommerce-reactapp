@@ -2,22 +2,23 @@
   width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: repeat(1, minmax(0, 1fr));
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  -ms-grid-columns: repeat(1, minmax(0, 24.125rem));
+  grid-template-columns: repeat(1, minmax(0, 24.125rem));
   row-gap: 7rem;
-  justify-items: center;
+  justify-content: center;
 }
 
-@media (min-width: 1028px) {
+@media (min-width: 1024px) {
   .productList {
-    -ms-grid-columns: repeat(2, minmax(0, 1fr));
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    -ms-grid-columns: repeat(2, minmax(0, 24.125rem));
+    grid-template-columns: repeat(2, minmax(0, 24.125rem));
+    justify-content: space-between;
   }
 }
 
 @media (min-width: 1440px) {
   .productList {
-    -ms-grid-columns: repeat(3, minmax(0, 1fr));
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    -ms-grid-columns: repeat(3, 24.125rem);
+    grid-template-columns: repeat(3, 24.125rem);
   }
 }

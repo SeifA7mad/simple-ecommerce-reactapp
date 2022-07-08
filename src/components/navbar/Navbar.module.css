@@ -3,14 +3,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 80%;
   height: 5rem;
   margin: auto;
 }
 
-@media (min-width: 768px) {
-  .navbar {
-    width: 80%;
-  }
-}
 
