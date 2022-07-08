@@ -1,0 +1,30 @@
+.productItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 92%;
+    height: 95%;
+    margin: 0.5rem auto;
+}
+
+.productItem img {
+    height: 20.625rem;
+}
+
+.productContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 3.625rem;
+}
+
+.productContent p {
+    margin: 0;
+    font-family: Raleway;
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.productContent .price {
+    font-weight: bold;
+}

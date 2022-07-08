@@ -1,0 +1,23 @@
+.productList {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  row-gap: 7rem;
+  justify-items: center;
+}
+
+@media (min-width: 1028px) {
+  .productList {
+    -ms-grid-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1440px) {
+  .productList {
+    -ms-grid-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

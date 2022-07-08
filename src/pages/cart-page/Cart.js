@@ -1,8 +1,14 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
+
+import PageTitle from '../../components/ui/page-title/PageTitle';
 
 class Cart extends Component {
   render() {
-    return <div> Cart Page </div>;
+    return (
+      <Fragment>
+        <PageTitle title='cart' />
+      </Fragment>
+    );
   }
 }
 
