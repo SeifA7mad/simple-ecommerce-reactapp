@@ -12,42 +12,32 @@
 }
 
 .up {
-  animation: animate-up 0.5s linear forwards;
+  animation: animate-up 0.2s linear forwards;
 }
 
 .down {
-  animation: animate-down 0.5s linear forwards;
+  animation: animate-down 0.2s linear forwards;
 }
 
 @keyframes animate-up {
-  0% {
+  from {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }
 
-  50% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
+  to {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
   }
 }
 
 @keyframes animate-down {
-  0% {
+  from {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
   }
 
-  50% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
+  to {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }

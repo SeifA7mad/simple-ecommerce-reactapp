@@ -1,7 +1,7 @@
 .currencyModal {
-    width: 7rem;
-    left: 50%;
-    top: 3rem;
+  width: 7rem;
+  left: 50%;
+  top: 4.063rem;
 }
 
 @media (min-width: 768px) {
@@ -23,4 +23,3 @@
     left: calc(50% + 33rem);
   } */
 }
-

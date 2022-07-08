@@ -12,9 +12,9 @@
 
 @media (min-width: 768px) {
   .modal {
-    width: 27rem;
-    left: calc(50% + 14rem);
-    top: 3rem;
+    width: 20rem;
+    left: calc(50% + 21rem);
+    top: 4.875rem;
   }
 }
 
