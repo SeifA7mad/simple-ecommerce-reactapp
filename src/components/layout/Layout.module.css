@@ -6,14 +6,16 @@
 }
 
 .main {
-  width: 98%;
+  width: 95%;
   margin: auto;
-  margin-top: 2rem;
-  border: solid black 1px;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
   .main {
-    width: 85%;
+    width: 80%;
   }
 }
