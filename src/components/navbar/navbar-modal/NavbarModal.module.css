@@ -1,5 +1,7 @@
 .navbarModal {
-    display: flex;
-    justify-content: space-between;
-    width: 6rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 6rem;
+  font: inherit;
 }

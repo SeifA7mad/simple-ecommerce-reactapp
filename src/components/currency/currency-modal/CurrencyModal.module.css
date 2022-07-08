@@ -1,13 +1,8 @@
 .currencyModal {
+  position: absolute;
   width: 7rem;
-  left: 50%;
-  top: 4.063rem;
-}
-
-@media (min-width: 768px) {
-  .currencyModal {
-    left: calc(50% + 34rem);
-  }
+  top: 2.5rem;
+  left: -2rem;
 }
 
 @media (min-width: 1024px) {

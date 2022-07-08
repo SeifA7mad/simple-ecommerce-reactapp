@@ -5,10 +5,10 @@
 .arrow {
   position: absolute;
   right: -0.5rem;
-  bottom: 10px;
+  bottom: 0.625rem;
   border: solid black;
   border-width: 0 2px 2px 0;
-  padding: 3px;
+  padding: 0.2em;
 }
 
 .up {

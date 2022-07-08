@@ -1,3 +1,12 @@
 .cartModal {
 
 }
+
+@media (min-width: 768px) {
+  .cartModal {
+    position: absolute;
+    width: 20rem;
+    left: -15rem;
+    top: 3rem;
+  }
+}

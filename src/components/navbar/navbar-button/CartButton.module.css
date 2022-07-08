@@ -3,8 +3,8 @@
 }
 
 .badge {
-  width: 20px;
-  height: 20px;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
   background-color: black;
   color: white;
@@ -13,5 +13,5 @@
   right: -0.5rem;
   top: -0.5rem;
   padding: 0;
-  padding-bottom: 2px;
+  padding-bottom: 0.2em;
 }

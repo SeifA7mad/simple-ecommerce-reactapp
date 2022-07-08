@@ -1,11 +1,16 @@
 .navbar {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background-color: white;
-  width: 100%;
+  width: 90%;
   height: 5rem;
-  z-index: 20;
+  margin: auto;
 }
+
+@media (min-width: 768px) {
+  .navbar {
+    width: 80%;
+  }
+}
+

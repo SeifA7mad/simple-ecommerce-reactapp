@@ -1,0 +1,19 @@
+.nav {
+  background-color: white;
+  width: 100%;
+  z-index: 20;
+  position: relative;
+}
+
+.main {
+  width: 98%;
+  margin: auto;
+  margin-top: 2rem;
+  border: solid black 1px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    width: 85%;
+  }
+}
