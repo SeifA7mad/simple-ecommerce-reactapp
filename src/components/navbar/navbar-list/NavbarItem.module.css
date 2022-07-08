@@ -1,8 +1,6 @@
 .navbarItem {
   list-style: none;
   padding: 0;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 .navbarItem a {
@@ -24,13 +22,13 @@
 }
 
 .navbarItem a.active::after {
-    background-color: #5ece7b; 
-    bottom: -1.9rem;
-    content: '';
-    display: block;
-    height: 3px;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%,0);
-    width: 140%;
+  background-color: #5ece7b;
+  bottom: -1.9rem;
+  content: '';
+  display: block;
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  width: 140%;
 }

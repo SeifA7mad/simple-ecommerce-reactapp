@@ -21,24 +21,24 @@
 
 @keyframes animate-up {
   from {
-    transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 
   to {
-    transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
   }
 }
 
 @keyframes animate-down {
   from {
-    transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
   }
 
   to {
-    transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 }
