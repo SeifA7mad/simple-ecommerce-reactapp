@@ -25,6 +25,7 @@ class ProductList extends Component {
           img='https://asset.promod.com/product/149094-gz-1651494095.jpg?auto=webp&quality=80&width=1920'
           name='Apollo Running Short'
           price='50'
+          isAddedToCart
         />
         <ProductItem
           img='https://asset.promod.com/product/149094-gz-1651494095.jpg?auto=webp&quality=80&width=1920'
@@ -35,6 +36,7 @@ class ProductList extends Component {
           img='https://asset.promod.com/product/149094-gz-1651494095.jpg?auto=webp&quality=80&width=1920'
           name='Apollo Running Short'
           price='50'
+          isOutOfStock
         />
       </div>
     );

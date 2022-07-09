@@ -9,6 +9,9 @@ class Card extends Component {
         className={`${classes.card} ${
           this.props.active ? classes.active : null
         } ${this.props.style}`}
+        onMouseOver={this.props.onMouseOver}
+        onMouseLeave={this.props.onMouseLeave}
+        onClick={this.props.onClick}
       >
         {this.props.children}
       </div>

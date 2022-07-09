@@ -5,6 +5,7 @@ class CartIcon extends Component {
     return (
       <svg
         className={this.props.style}
+        onClick={this.props.onClick}
         fill='none'
         stroke='currentColor'
         viewBox='0 0 24 24'
