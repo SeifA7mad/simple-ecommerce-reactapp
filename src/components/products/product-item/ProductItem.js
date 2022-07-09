@@ -37,10 +37,16 @@ class ProductItem extends Component {
   }
 
   onAddToCartHandler() {
-    // call add to cart function from ctx
+    // if not in cart => call add to cart function
     // change isAddedToCart=true
+    // else =>
+    // call remove from cart function
+    // change isAddedToCart=false
     this.setState((prevState) => {
-      return { isAddedToCart: !prevState.isAddedToCart };
+      !prevState.isAddedToCart
+        ? this.props.onAddToCart()
+        : this.props.onRemoveFromCart();
+        return { isAddedToCart: !prevState.isAddedToCart };
     });
   }
 
@@ -49,6 +55,10 @@ class ProductItem extends Component {
   }
 
   render() {
+    if (this.state.doesNavigate) {
+      return <Navigate to={`/product/${this.props.id}`} replace />;
+    }
+    
     const canAddToCart = !this.state.isAddedToCart && !this.props.isOutOfStock;
 
     return (
@@ -82,9 +92,6 @@ class ProductItem extends Component {
             onClick={() => this.onAddToCartHandler(this)}
             style={classes.addToCartIcon}
           />
-        )}
-        {this.state.doesNavigate && (
-          <Navigate to={`/product/${this.props.id}`} replace />
         )}
       </Card>
     );
