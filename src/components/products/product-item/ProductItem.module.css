@@ -5,6 +5,7 @@
   width: 92%;
   height: 95%;
   margin: 0.5rem auto;
+  cursor: pointer;
 }
 
 .productItem img {
@@ -49,7 +50,7 @@
   right: 2rem;
   bottom: 17%;
   color: white;
-  background-color: #5ECE7B;
+  background-color: #5ece7b;
   text-align: center;
   border-radius: 50%;
   padding: 0.8rem;

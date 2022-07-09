@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import Card from '../../ui/card/Card';
 import CartIcon from '../../cart/CartIcon';
@@ -11,6 +12,7 @@ class ProductItem extends Component {
     this.state = {
       isAddedToCart: false,
       isHovered: false,
+      doesNavigate: false,
     };
   }
 
@@ -42,8 +44,13 @@ class ProductItem extends Component {
     });
   }
 
+  onNavigateHandler() {
+    this.setState({ doesNavigate: true });
+  }
+
   render() {
     const canAddToCart = !this.state.isAddedToCart && !this.props.isOutOfStock;
+
     return (
       <Card
         onMouseOver={() =>
@@ -57,6 +64,9 @@ class ProductItem extends Component {
           className={`${classes.productItem} ${
             this.props.isOutOfStock ? classes.isOutOfStock : null
           }`}
+          onClick={() =>
+            !this.props.isOutOfStock ? this.onNavigateHandler(this) : null
+          }
         >
           <img src={this.props.img} alt='Product' />
           <div className={classes.productContent}>
@@ -72,6 +82,9 @@ class ProductItem extends Component {
             onClick={() => this.onAddToCartHandler(this)}
             style={classes.addToCartIcon}
           />
+        )}
+        {this.state.doesNavigate && (
+          <Navigate to={`/product/${this.props.id}`} replace />
         )}
       </Card>
     );
