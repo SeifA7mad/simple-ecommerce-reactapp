@@ -67,9 +67,7 @@ class ProductList extends Component {
   }
 
   getProductPrice(prices) {
-    const currency = this.context.selectedCurrency
-      ? this.context.selectedCurrency
-      : { label: 'usd', symbol: '$' };
+    const currency = this.context.selectedCurrency;
 
     const displayedPrice = prices.find(
       (price) =>

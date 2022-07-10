@@ -13,7 +13,7 @@ class Category extends Component {
     super();
     this.state = {
       availableCategories: [],
-      selectedCategory: null,
+      selectedCategory: 'all',
       showCategoryModal: false,
     };
   }
@@ -40,7 +40,6 @@ class Category extends Component {
 
       this.setState({
         availableCategories: categories,
-        selectedCategory: categories[0],
       });
     } catch (err) {
       console.log(err);
@@ -78,20 +77,18 @@ class Category extends Component {
 
     return (
       <Fragment>
-        {this.state.selectedCategory && (
           <PageTitle
             title={this.state.selectedCategory}
             onClick={() => this.onToggleModalHandler(this)}
             isModalOpen={this.state.showCategoryModal}
             style={{ cursor: 'pointer' }}
           />
-        )}
         {this.state.showCategoryModal && (
           <SideModal style={classes.categoryModal}>
             {categoriesModalContent}
           </SideModal>
         )}
-        {this.state.selectedCategory && <ProductList categoryName={this.state.selectedCategory} />}
+        <ProductList categoryName={this.state.selectedCategory} />
       </Fragment>
     );
   }

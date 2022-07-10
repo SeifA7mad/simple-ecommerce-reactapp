@@ -6,7 +6,7 @@ const defaultState = {
   cart: [],
   totalAmount: 0,
   totalPrice: 0,
-  selectedCurrency: null,
+  selectedCurrency: { label: 'usd', symbol: '$' },
 };
 
 class ProductProvider extends Component {

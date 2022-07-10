@@ -13,7 +13,6 @@ class CurrencyModal extends Component {
     super();
     this.state = {
       currencies: [],
-      selectedCurrency: null,
     };
   }
 
