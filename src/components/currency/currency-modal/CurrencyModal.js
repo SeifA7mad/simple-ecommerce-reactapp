@@ -1,10 +1,10 @@
 import { Component } from 'react';
 
-import Modal from '../../ui/modal/Modal';
+import SideModal from '../../ui/modal/SideModal';
 
-import classes from './CurrencyModal.module.css';
+// import classes from './CurrencyModal.module.css';
 
-const dummpyCurrencies = ['USD', 'EUR', 'JPY']
+const dummpyCurrencies = ['USD', 'EUR', 'JPY'];
 
 class CurrencyModal extends Component {
   constructor() {
@@ -17,7 +17,7 @@ class CurrencyModal extends Component {
 
   componentDidMount() {
     // fetch currenies
-    this.setState({ currencies: dummpyCurrencies});
+    this.setState({ currencies: dummpyCurrencies });
   }
 
   componentDidUpdate() {
@@ -27,11 +27,11 @@ class CurrencyModal extends Component {
 
   render() {
     return (
-      <Modal style={classes.currencyModal}>
-        <div className={classes.currencyModalContent}>
-          {this.state.currencies.map((currency, i) => <p key={i}> $ {currency} </p>)}
-        </div>
-      </Modal>
+      <SideModal>
+        {this.state.currencies.map((currency, i) => (
+          <p key={i}> $ {currency} </p>
+        ))}
+      </SideModal>
     );
   }
 }

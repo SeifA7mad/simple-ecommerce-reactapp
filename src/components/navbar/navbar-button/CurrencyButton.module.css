@@ -3,42 +3,6 @@
 }
 
 .arrow {
-  position: absolute;
   right: -0.5rem;
   bottom: 0.625rem;
-  border: solid black;
-  border-width: 0 2px 2px 0;
-  padding: 0.2em;
-}
-
-.up {
-  animation: animate-up 0.2s linear forwards;
-}
-
-.down {
-  animation: animate-down 0.2s linear forwards;
-}
-
-@keyframes animate-up {
-  from {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-  to {
-    -webkit-transform: rotate(-135deg);
-    transform: rotate(-135deg);
-  }
-}
-
-@keyframes animate-down {
-  from {
-    -webkit-transform: rotate(-135deg);
-    transform: rotate(-135deg);
-  }
-
-  to {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
 }

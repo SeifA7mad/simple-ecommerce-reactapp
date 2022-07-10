@@ -15,9 +15,27 @@ class ProductList extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // get product category this.props.category
     // fetch products from API based on category type
+    // const graphqlQuery = {
+    //   query: `
+    //     query {
+    //       categories {
+    //         name
+    //       }
+    //     }
+    //   `,
+    // };
+    // const response = await fetch('http://localhost:4000', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(graphqlQuery),
+    // });
+
+    // const data = await response.json();
+
+    // console.log(data);
   }
 
   onAddToCartHandler(product) {
