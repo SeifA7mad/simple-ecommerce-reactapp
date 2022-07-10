@@ -18,7 +18,7 @@ class Category extends Component {
     };
   }
 
-  async componentDidMount() {
+  async fetchCategories() {
     const graphqlQuery = {
       query: `query {
           categories {
@@ -45,6 +45,10 @@ class Category extends Component {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  componentDidMount() {
+    this.fetchCategories();
   }
 
   onToggleModalHandler() {
@@ -87,7 +91,7 @@ class Category extends Component {
             {categoriesModalContent}
           </SideModal>
         )}
-        <ProductList categoryType={'categoryName'} />
+        {this.state.selectedCategory && <ProductList categoryName={this.state.selectedCategory} />}
       </Fragment>
     );
   }

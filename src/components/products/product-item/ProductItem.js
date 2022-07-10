@@ -46,7 +46,7 @@ class ProductItem extends Component {
       !prevState.isAddedToCart
         ? this.props.onAddToCart()
         : this.props.onRemoveFromCart();
-        return { isAddedToCart: !prevState.isAddedToCart };
+      return { isAddedToCart: !prevState.isAddedToCart };
     });
   }
 
@@ -58,7 +58,7 @@ class ProductItem extends Component {
     if (this.state.doesNavigate) {
       return <Navigate to={`/product/${this.props.id}`} replace />;
     }
-    
+
     const canAddToCart = !this.state.isAddedToCart && !this.props.isOutOfStock;
 
     return (
@@ -81,7 +81,10 @@ class ProductItem extends Component {
           <img src={this.props.img} alt='Product' />
           <div className={classes.productContent}>
             <p> {this.props.name} </p>
-            <p className={classes.price}> ${(+this.props.price).toFixed(2)} </p>
+            <p className={classes.price}>
+              {this.props.price.symbol}
+              {(+this.props.price.amount).toFixed(2)}
+            </p>
           </div>
         </div>
         {this.props.isOutOfStock && (

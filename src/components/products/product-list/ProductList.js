@@ -15,27 +15,43 @@ class ProductList extends Component {
     };
   }
 
-  async componentDidMount() {
+  async fetchProducts(categoryName) {
     // get product category this.props.category
     // fetch products from API based on category type
-    // const graphqlQuery = {
-    //   query: `
-    //     query {
-    //       categories {
-    //         name
-    //       }
-    //     }
-    //   `,
-    // };
-    // const response = await fetch('http://localhost:4000', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(graphqlQuery),
-    // });
+    const graphqlQuery = {
+      query: `
+        query {
+          category(input: {title: "${categoryName}"}) {
+            products {
+              id name inStock gallery brand 
+              prices { amount currency{ label } }
+          }}
+        }
+      `,
+    };
+    try {
+      const response = await fetch('http://localhost:4000', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(graphqlQuery),
+      });
 
-    // const data = await response.json();
+      const resData = await response.json();
 
-    // console.log(data);
+      this.setState({ products: resData.data.category.products });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  componentDidMount() {
+    this.fetchProducts(this.props.categoryName);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.categoryName !== this.props.categoryName) {
+      this.fetchProducts(this.props.categoryName);
+    }
   }
 
   onAddToCartHandler(product) {
@@ -50,41 +66,35 @@ class ProductList extends Component {
     return this.context.cart.find((p) => id === p.id) ? true : false;
   }
 
+  getProductPrice(prices) {
+    const currency = this.context.selectedCurrency
+      ? this.context.selectedCurrency
+      : { label: 'usd', symbol: '$' };
+
+    const displayedPrice = prices.find(
+      (price) =>
+        price.currency.label.toLowerCase() === currency.label.toLowerCase()
+    );
+
+    return { amount: displayedPrice.amount, symbol: currency.symbol};
+  }
+
   render() {
     // map on products to output productItems
-
-    return (
-      <div className={classes.productList}>
-        <ProductItem
-          img='https://asset.promod.com/product/149094-gz-1651494095.jpg?auto=webp&quality=80&width=1920'
-          name='Apollo Running Short'
-          price='50'
-          id={1}
-          isAddedToCart={this.isProductInCartHandler(1)}
-          onAddToCart={() => this.onAddToCartHandler({ id: 1 })}
-          onRemoveFromCart={() => this.onRemoveFromCartHandler(1)}
-        />
-        <ProductItem
-          img='https://cdn.shopify.com/s/files/1/1962/2013/products/S19W-2400046315-MSH-1-051222-Is1-B1-8M_500x.jpg?v=1652891896'
-          name='Apollo Running Short'
-          price='50'
-          id={2}
-          isAddedToCart={this.isProductInCartHandler(2)}
-          onAddToCart={() => this.onAddToCartHandler({ id: 2 })}
-          onRemoveFromCart={() => this.onRemoveFromCartHandler(2)}
-        />
-        <ProductItem
-          img='https://asset.promod.com/product/149094-gz-1651494095.jpg?auto=webp&quality=80&width=1920'
-          name='Apollo Running Short'
-          price='50'
-          isOutOfStock
-          id={3}
-          isAddedToCart={this.isProductInCartHandler(3)}
-          onAddToCart={() => this.onAddToCartHandler({ id: 3 })}
-          onRemoveFromCart={() => this.onRemoveFromCartHandler(3)}
-        />
-      </div>
-    );
+    const productItems = this.state.products.map((product) => (
+      <ProductItem
+        id={product.id}
+        key={product.id}
+        name={product.name}
+        price={this.getProductPrice(product.prices)}
+        img={product.gallery[0]}
+        isOutOfStock={!product.inStock}
+        isAddedToCart={this.isProductInCartHandler(product.id)}
+        onAddToCart={() => this.onAddToCartHandler(product)}
+        onRemoveFromCart={() => this.onRemoveFromCartHandler(product.id)}
+      />
+    ));
+    return <div className={classes.productList}>{productItems}</div>;
   }
 }
 
