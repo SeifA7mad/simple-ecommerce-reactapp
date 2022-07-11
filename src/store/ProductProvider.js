@@ -96,7 +96,7 @@ class ProductProvider extends Component {
       ).amount;
     });
 
-    return totalPriceAmount;
+    return totalPriceAmount.toFixed(2);
   }
 
   render() {
