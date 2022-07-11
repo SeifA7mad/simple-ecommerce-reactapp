@@ -1,0 +1,43 @@
+.selectableImages {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.mainImage {
+  width: 25rem;
+  height: 18.813rem;
+  align-self: center;
+}
+
+.subImages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  order: 1;
+}
+
+.subImages img {
+  width: 4.938rem;
+  height: 5rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .selectableImages {
+    width: 45rem;
+    flex-direction: row;
+  }
+  .mainImage {
+    width: 38.125rem;
+    height: 31.938rem;
+    align-self: flex-start;
+  }
+  .subImages {
+    order: 0;
+    flex-direction: column;
+  }
+}
