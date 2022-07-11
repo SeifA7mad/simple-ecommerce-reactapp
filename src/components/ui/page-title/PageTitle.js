@@ -14,7 +14,9 @@ class PageTitle extends Component {
     ) : null;
     return (
       <h2
-        className={`${classes.pageTitle}`}
+        className={`${classes.pageTitle} ${
+          this.props.onClick ? classes.clickable : null
+        }`}
         style={this.props.style}
         onClick={this.props.onClick}
       >

@@ -16,3 +16,7 @@
   right: -2rem;
   bottom: 0.5rem;
 }
+
+.pageTitle.clickable {
+  cursor: pointer;
+}
