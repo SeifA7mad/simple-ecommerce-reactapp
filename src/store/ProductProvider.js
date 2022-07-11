@@ -4,8 +4,7 @@ import ProductContext from './product-context';
 
 const defaultState = {
   cart: [],
-  totalAmount: 0,
-  totalPrice: 0,
+  totalQuantity: 0,
   selectedCurrency: { label: 'usd', symbol: '$' },
 };
 
@@ -16,65 +15,69 @@ class ProductProvider extends Component {
   }
 
   onAddToCartHandler(product) {
-    // check if the Product exist in the cart => just increase the amount
-    // if not =>  push it to the cart with amount = 1
-    // always ++totalAmount
+    // TODO2: only get product id as a parameter to fetch the complete Product from the Grapghql
+    // TODO2: use the same function that fetch the product in productPage
+    // check if the Product exist in the cart => just increase the Quantity
+    // if not =>  push it to the cart with Quantity = 1
+    // always ++totalQuantity
     // always update totalprice = oldTotalPrice + productPrice
 
-    // Get the cart and totalamount from state to manipulate it
+    // Get the cart and totalQuantity from state to manipulate it
     const newCart = structuredClone(this.state.cart);
-    let newTotalAmount = this.state.totalAmount;
-    let newTotalPrice = this.state.totalPrice;
+    let newTotalQuantity = this.state.totalQuantity;
+    // let newTotalPrice = this.state.totalPrice;
 
     // check if product exist in array
     const foundProductIndex = newCart.findIndex((p) => p.id === product.id);
 
     if (foundProductIndex !== -1) {
-      ++newCart[foundProductIndex].amount;
+      ++newCart[foundProductIndex].quantity;
     } else {
-      newCart.push({ ...product, amount: 1 });
+      // TODO2: fetch the entire product if not fetched to check if it's still in stock
+      newCart.push({ ...product, quantity: 1 });
     }
 
-    ++newTotalAmount;
-    newTotalPrice += product.price;
+    ++newTotalQuantity;
+
+    // // TODO1: calculate totalprice bases on the selected currency
+    // newTotalPrice += product.price;
 
     this.setState({
       cart: newCart,
-      totalAmount: newTotalAmount,
-      totalPrice: newTotalPrice,
+      totalQuantity: newTotalQuantity,
     });
   }
 
   onRemoveFromCartHandler(id) {
     // check if the Product exist in the cart =>
-    // if amount > 1 => decrease the amount by 1
+    // if Quantity > 1 => decrease the Quantity by 1
     // if not remove the product from the cart
-    // always --totalAmount
+    // always --totalQuantity
     // always update totalprice = oldTotalPrice - productPrice
 
     const newCart = structuredClone(this.state.cart);
-    let newTotalAmount = this.state.totalAmount;
-    let newTotalPrice = this.state.totalPrice;
+    let newTotalQuantity = this.state.totalQuantity;
+    // let newTotalPrice = this.state.totalPrice;
 
     // check if product exist in array
     const foundProductIndex = newCart.findIndex((p) => p.id === id);
 
     if (foundProductIndex === -1) return;
 
-    newTotalPrice -= newCart[foundProductIndex].price;
+    // // TODO1: calculate totalprice bases on the selected currency
+    // newTotalPrice -= newCart[foundProductIndex].price;
 
-    if (newCart[foundProductIndex].amount > 1) {
-      --newCart[foundProductIndex].amount;
+    if (newCart[foundProductIndex].quantity > 1) {
+      --newCart[foundProductIndex].quantity;
     } else {
       newCart.splice(foundProductIndex, 1);
     }
 
-    --newTotalAmount;
+    --newTotalQuantity;
 
     this.setState({
       cart: newCart,
-      totalAmount: newTotalAmount,
-      totalPrice: newTotalPrice,
+      totalQuantity: newTotalQuantity,
     });
   }
 
@@ -82,17 +85,31 @@ class ProductProvider extends Component {
     this.setState({ selectedCurrency: currency });
   }
 
+  onCalculateTotalPriceHandler() {
+    // TODO1: create function to calculate the total price based on the cart & selectedCurrency
+    // loop on cart and sum all the product prices of the selected currency
+    let totalPriceAmount = 0.0;
+    const currentCurrency = this.state.selectedCurrency.label;
+    this.state.cart.forEach((product) => {
+      totalPriceAmount += product.prices.find(
+        (price) => price.currency.label.toLowerCase() === currentCurrency.toLowerCase()
+      ).amount;
+    });
+
+    return totalPriceAmount;
+  }
+
   render() {
     const productContext = {
       cart: this.state.cart,
-      totalAmount: this.state.totalAmount,
-      totalPrice: this.state.totalPrice,
+      totalQuantity: this.state.totalQuantity,
       selectedCurrency: this.state.selectedCurrency,
       addToCart: this.onAddToCartHandler.bind(this),
       removeFromCart: this.onRemoveFromCartHandler.bind(this),
       changeCurrency: this.onChangeCurrencyHandler.bind(this),
+      calculateTotalPrice: this.onCalculateTotalPriceHandler.bind(this),
     };
-    
+
     return (
       <ProductContext.Provider value={productContext}>
         {this.props.children}

@@ -14,7 +14,7 @@ class CartButton extends Component {
     return (
       <Button onClick={this.props.onClick}>
         <CartIcon style={classes.icon} />
-        <span className={classes.badge}>{this.context.totalAmount}</span>
+        <span className={classes.badge}>{this.context.totalQuantity}</span>
       </Button>
     );
   }

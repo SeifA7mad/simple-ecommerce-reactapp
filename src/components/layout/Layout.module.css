@@ -7,8 +7,7 @@
 
 .main {
   width: 80%;
-  margin: auto;
-  margin-top: 5rem;
+  margin: 5rem auto;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

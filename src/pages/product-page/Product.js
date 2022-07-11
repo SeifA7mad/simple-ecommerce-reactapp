@@ -1,9 +1,11 @@
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
+
+import withRouter from '../../util/hoc/withRouter';
 
 class Product extends Component {
   render() {
-    return <div> Product Page </div>;
+    return <div> {this.props.router.params.id} </div>;
   }
 }
 
-export default Product;
+export default withRouter(Product);
