@@ -78,7 +78,7 @@ class ProductItem extends Component {
             !this.props.isOutOfStock ? this.onNavigateHandler(this) : null
           }
         >
-          <img src={this.props.img} alt='Product' />
+          <img src={this.props.img} alt='Product' loading='lazy' placeholder={this.props.name} />
           <div className={classes.productContent}>
             <p> {this.props.name} </p>
             <p className={classes.price}>

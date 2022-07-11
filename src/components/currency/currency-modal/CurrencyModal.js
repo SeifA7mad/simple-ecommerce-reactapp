@@ -44,6 +44,7 @@ class CurrencyModal extends Component {
 
   onChangeSelectedCurrencyHandler(currency) {
     this.context.changeCurrency(currency);
+    this.props.onClose();
   }
 
   render() {
