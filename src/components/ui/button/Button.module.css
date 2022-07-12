@@ -1,0 +1,14 @@
+.button {
+    width: 18.25rem;
+    height: 3.25rem;
+    border: none;
+    background-color: #5ECE7B;
+    color: white;
+    font-family: Raleway;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #4ba262;
+}

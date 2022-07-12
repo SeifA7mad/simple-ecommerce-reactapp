@@ -8,7 +8,31 @@
 
 .productDescription .productContent {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
+
+.productDescription .productContent .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: left;
+  font-family: Roboto Condensed;
+}
+
+.productDescription .productContent .price span {
+  font-family: Raleway;
+  font-size: 1.5rem;
+}
+
+.productDescription .productContent .description {
+  font-family: Roboto;
+  font-size: 1rem;
+  text-align: left;
+  width: 18rem;
+  margin: 0;
+}
+
 
 @media (min-width: 1430px) {
     .productDescription .productContent {

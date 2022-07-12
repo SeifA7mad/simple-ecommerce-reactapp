@@ -3,7 +3,7 @@
 }
 
 .radioGroup .radioGroupLable {
-  font-family: Raleway;
+  font-family: Roboto Condensed;
   font-weight: bold;
   text-align: left;
   font-size: 1.125rem;
@@ -13,6 +13,6 @@
   width: 100%;
   display: flex;
   margin: 0.5rem 0;
-  gap: 0.7rem;
+  column-gap: 0.7rem;
   flex-wrap: wrap;
 }

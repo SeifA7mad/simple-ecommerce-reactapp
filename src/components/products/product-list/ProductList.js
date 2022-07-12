@@ -3,6 +3,8 @@ import ProductItem from '../product-item/ProductItem';
 
 import ProductContext from '../../../store/product-context';
 
+import getProductPrice from '../../../util/fetch-api/getProductPrice';
+
 import classes from './ProductList.module.css';
 
 class ProductList extends Component {
@@ -66,17 +68,6 @@ class ProductList extends Component {
     return this.context.cart.hasOwnProperty(id);
   }
 
-  getProductPrice(prices) {
-    const currency = this.context.selectedCurrency;
-
-    const displayedPrice = prices.find(
-      (price) =>
-        price.currency.label.toLowerCase() === currency.label.toLowerCase()
-    );
-
-    return { amount: displayedPrice.amount, symbol: currency.symbol};
-  }
-
   render() {
     // map on products to output productItems
     const productItems = this.state.products.map((product) => (
@@ -84,7 +75,7 @@ class ProductList extends Component {
         id={product.id}
         key={product.id}
         name={product.name}
-        price={this.getProductPrice(product.prices)}
+        price={getProductPrice(product.prices, this.context.selectedCurrency)}
         img={product.gallery[0]}
         isOutOfStock={!product.inStock}
         isAddedToCart={this.isProductInCartHandler(product.id)}
