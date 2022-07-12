@@ -3,10 +3,15 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-@media (min-width: 1024px) {
-    .productDescription {
-       
+.productDescription .productContent {
+  width: 100%;
+}
+
+@media (min-width: 1430px) {
+    .productDescription .productContent {
+       width: 35%;
     }
 }

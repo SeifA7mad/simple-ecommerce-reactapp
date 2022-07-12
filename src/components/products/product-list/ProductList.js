@@ -63,7 +63,7 @@ class ProductList extends Component {
   }
 
   isProductInCartHandler(id) {
-    return this.context.cart.find((p) => id === p.id) ? true : false;
+    return this.context.cart.hasOwnProperty(id);
   }
 
   getProductPrice(prices) {

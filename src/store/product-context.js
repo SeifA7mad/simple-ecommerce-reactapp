@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 const ProductContext = createContext({
-  cart: [],
+  cart: {},
   totalAmount: 0,
   selectedCurrency: null,
   addToCart(product, isFetched = true) {},

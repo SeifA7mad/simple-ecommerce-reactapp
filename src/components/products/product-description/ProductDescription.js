@@ -3,6 +3,7 @@ import { Component } from 'react';
 import getProduct from '../../../util/fetch-api/getProduct';
 
 import SelectableImages from '../../ui/images-show/SelectableImages';
+import ProductTitle from '../../ui/product-title/ProductTitle';
 
 import classes from './ProductDescription.module.css';
 
@@ -25,6 +26,12 @@ class ProductDescription extends Component {
       this.state.product && (
         <div className={classes.productDescription}>
           <SelectableImages images={this.state.product.gallery} />
+          <div className={classes.productContent}>
+            <ProductTitle
+              brand={this.state.product.brand}
+              title={this.state.product.name}
+            />
+          </div>
         </div>
       )
     );

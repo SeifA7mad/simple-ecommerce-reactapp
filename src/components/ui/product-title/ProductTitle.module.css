@@ -1,0 +1,10 @@
+.productTitle {
+    font-family: Raleway;
+    font-weight: bold;
+    font-size: 1.875rem;
+    text-align: left;
+}
+
+.productTitle span {
+    font-weight: normal;
+}

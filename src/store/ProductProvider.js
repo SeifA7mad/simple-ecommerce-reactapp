@@ -5,7 +5,7 @@ import ProductContext from './product-context';
 import getProduct from '../util/fetch-api/getProduct';
 
 const defaultState = {
-  cart: [],
+  cart: {},
   totalQuantity: 0,
   selectedCurrency: { label: 'usd', symbol: '$' },
 };
@@ -25,18 +25,16 @@ class ProductProvider extends Component {
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
-    // check if product exist in array
-    const foundProductIndex = newCart.findIndex((p) => p.id === product.id);
-
-    if (foundProductIndex !== -1) {
-      ++newCart[foundProductIndex].quantity;
+    // check if product exist in cart
+    if (newCart.hasOwnProperty(product.id)) {
+      ++newCart[product.id].quantity;
     } else {
       // fetch the entire product if not fetched & to check if it's still in stock
       let fetchedProduct = product;
       if (!isFetched) {
         fetchedProduct = await getProduct(product.id);
       }
-      newCart.push({ ...fetchedProduct, quantity: 1 });
+      newCart[product.id] = { ...fetchedProduct, quantity: 1 };
     }
 
     ++newTotalQuantity;
@@ -56,15 +54,13 @@ class ProductProvider extends Component {
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
-    // check if product exist in array
-    const foundProductIndex = newCart.findIndex((p) => p.id === id);
+    // check if product not exist in cart
+    if (!newCart.hasOwnProperty(id)) return;
 
-    if (foundProductIndex === -1) return;
-
-    if (newCart[foundProductIndex].quantity > 1) {
-      --newCart[foundProductIndex].quantity;
+    if (newCart[id].quantity > 1) {
+      --newCart[id].quantity;
     } else {
-      newCart.splice(foundProductIndex, 1);
+      delete newCart[id];
     }
 
     --newTotalQuantity;
@@ -83,8 +79,9 @@ class ProductProvider extends Component {
     // loop on cart and sum all the product prices of the selected currency
     let totalPriceAmount = 0.0;
     const currentCurrency = this.state.selectedCurrency.label;
-    this.state.cart.forEach((product) => {
-      totalPriceAmount += product.prices.find(
+    const cartIdKeys = Object.keys(this.state.cart);
+    cartIdKeys.forEach((productId) => {
+      totalPriceAmount += this.state.cart[productId].prices.find(
         (price) =>
           price.currency.label.toLowerCase() === currentCurrency.toLowerCase()
       ).amount;

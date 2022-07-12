@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1430px) {
   .selectableImages {
     width: 45rem;
     flex-direction: row;
