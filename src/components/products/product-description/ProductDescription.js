@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import getProduct from '../../../util/fetch-api/getProduct';
+import AttributesForm from '../../ui/attributes-form/AttributesForm';
 
 import SelectableImages from '../../ui/images-show/SelectableImages';
 import ProductTitle from '../../ui/product-title/ProductTitle';
@@ -31,6 +32,7 @@ class ProductDescription extends Component {
               brand={this.state.product.brand}
               title={this.state.product.name}
             />
+            <AttributesForm attributes={this.state.product.attributes} />
           </div>
         </div>
       )

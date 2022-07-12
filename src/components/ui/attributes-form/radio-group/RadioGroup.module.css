@@ -1,0 +1,18 @@
+.radioGroup {
+  width: 100%;
+}
+
+.radioGroup .radioGroupLable {
+  font-family: Raleway;
+  font-weight: bold;
+  text-align: left;
+  font-size: 1.125rem;
+}
+
+.radioAttributes {
+  width: 100%;
+  display: flex;
+  margin: 0.5rem 0;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
