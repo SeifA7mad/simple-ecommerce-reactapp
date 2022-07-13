@@ -94,9 +94,9 @@ class ProductDescription extends Component {
                 onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
               />
             ))}
-            <p className={classes.price}>
+            <div className={classes.price}>
               Price: <br /> <ProductPrice productPrice={productPrice} />
-            </p>
+            </div>
             <Button type='submit'>
               {!this.state.addedToCart ? 'ADD TO CART' : 'ADDED!'}
             </Button>

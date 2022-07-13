@@ -26,11 +26,25 @@ class CartItem extends Component {
             <RadioGroup
               key={attribute.id}
               attribute={attribute}
+              selectedAttributes={this.props.product.selectedAttributes}
               onChange={(e) =>
                 this.props.onChangeValue(e, this.props.product.id, attribute.id)
               }
             />
           ))}
+        </div>
+        <div className={classes.cartInputs}>
+          <button onClick={this.props.onAddToCart}>+</button>
+          <p> {this.props.product.quantity} </p>
+          <button onClick={this.props.onRemoveFromCart}>-</button>
+        </div>
+        <div className={classes.image}>
+          <img
+            src={this.props.product.gallery[0]}
+            loading='lazy'
+            alt='product'
+            placeholder='Product'
+          />
         </div>
       </div>
     );

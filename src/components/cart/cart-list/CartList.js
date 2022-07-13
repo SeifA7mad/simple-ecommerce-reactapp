@@ -13,15 +13,11 @@ class CartList extends Component {
   }
 
   onAddToCartHandler(product) {
-    this.context.onAddToCartHandler(
-      product,
-      true,
-      this.selectedAttributes[product.id]
-    );
+    this.context.addToCart(product, true, this.selectedAttributes[product.id]);
   }
 
   onRemoveFromCartHandler(id) {
-    this.context.onRemoveFromCartHandler(id);
+    this.context.removeFromCart(id);
   }
 
   onChangeValueAttributeHandler(event, productId, attributeId) {
