@@ -1,18 +1,20 @@
 .radioGroup {
   width: 100%;
+  font-size: inherit;
 }
 
 .radioGroup .radioGroupLable {
   font-family: Roboto Condensed;
   font-weight: bold;
   text-align: left;
-  font-size: 1.125rem;
+  font-size: 1.125em;
 }
 
 .radioAttributes {
   width: 100%;
   display: flex;
-  margin: 0.5rem 0;
-  column-gap: 0.7rem;
+  margin: 0.5em 0;
+  column-gap: 0.7em;
   flex-wrap: wrap;
+  font-size: inherit;
 }

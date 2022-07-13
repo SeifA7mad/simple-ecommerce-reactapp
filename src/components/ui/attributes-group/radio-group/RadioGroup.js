@@ -27,8 +27,7 @@ class RadioGroup extends Component {
     return (
       <div className={classes.radioGroup}>
         <label className={classes.radioGroupLable}>
-          {' '}
-          {this.props.attribute.name}:{' '}
+          {this.props.attribute.name}:
         </label>
         <div onChange={this.props.onChange} className={classes.radioAttributes}>
           {radioButtons}

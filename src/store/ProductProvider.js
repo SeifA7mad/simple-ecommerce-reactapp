@@ -28,17 +28,26 @@ class ProductProvider extends Component {
     // check if product exist in cart
     if (newCart.hasOwnProperty(product.id)) {
       ++newCart[product.id].quantity;
-      newCart[product.id].selectedAttributes = selectedAttributes;
+      for (const attributeId in selectedAttributes) {
+        newCart[product.id].selectedAttributes[attributeId].push(
+          selectedAttributes[attributeId]
+        );
+      }
     } else {
       // fetch the entire product if not fetched & to check if it's still in stock
       let fetchedProduct = product;
       if (!isFetched) {
         fetchedProduct = await getProduct(product.id);
       }
+      const newSelectedAttributes = {};
+      for (const attributeId in selectedAttributes) {
+        newSelectedAttributes[attributeId] = [selectedAttributes[attributeId]];
+      }
+
       newCart[product.id] = {
         ...fetchedProduct,
         quantity: 1,
-        selectedAttributes: selectedAttributes,
+        selectedAttributes: newSelectedAttributes,
       };
     }
 
@@ -67,6 +76,9 @@ class ProductProvider extends Component {
     if (!removeAll) {
       if (newCart[id].quantity > 1) {
         --newCart[id].quantity;
+        for (const attributeId in newCart[id].selectedAttributes) {
+          newCart[id].selectedAttributes[attributeId].pop();
+        }
       } else {
         delete newCart[id];
       }

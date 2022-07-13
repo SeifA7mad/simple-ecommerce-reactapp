@@ -12,6 +12,7 @@ import Button from '../../ui/button/Button';
 
 import classes from './ProductDescription.module.css';
 import ErrorMessage from '../../ui/error/ErrorMessage';
+import ProductPrice from '../../ui/attributes-group/product-price/ProductPrice';
 
 class ProductDescription extends Component {
   static contextType = ProductContext;
@@ -62,11 +63,7 @@ class ProductDescription extends Component {
   }
 
   onChangeValueHandler(event, id) {
-    if (this.selectedAttributes[id]) {
-      this.selectedAttributes[id].push(event.target.value);
-      return;
-    }
-    this.selectedAttributes[id] = [event.target.value];
+    this.selectedAttributes[id] = event.target.value;
   }
 
   render() {
@@ -98,11 +95,7 @@ class ProductDescription extends Component {
               />
             ))}
             <p className={classes.price}>
-              Price: <br />
-              <span>
-                {productPrice.symbol}
-                {productPrice.amount.toFixed(2)}
-              </span>
+              Price: <br /> <ProductPrice productPrice={productPrice} />
             </p>
             <Button type='submit'>
               {!this.state.addedToCart ? 'ADD TO CART' : 'ADDED!'}

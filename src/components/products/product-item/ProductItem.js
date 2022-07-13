@@ -44,7 +44,7 @@ class ProductItem extends Component {
 
     return (
       <Card
-        onMouseOver={() =>
+        onMouseEnter={() =>
           canAddToCart ? this.onMouseOverHandler(this) : null
         }
         onMouseLeave={() =>
