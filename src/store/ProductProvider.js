@@ -16,7 +16,7 @@ class ProductProvider extends Component {
     this.state = defaultState;
   }
 
-  async onAddToCartHandler(product, isFetched = true) {
+  async onAddToCartHandler(product, isFetched = true, selectedAttributes = {}) {
     // check if the Product exist in the cart => just increase the Quantity
     // if not =>  push it to the cart with Quantity = 1
     // always ++totalQuantity
@@ -28,23 +28,29 @@ class ProductProvider extends Component {
     // check if product exist in cart
     if (newCart.hasOwnProperty(product.id)) {
       ++newCart[product.id].quantity;
+      newCart[product.id].selectedAttributes = selectedAttributes;
     } else {
       // fetch the entire product if not fetched & to check if it's still in stock
       let fetchedProduct = product;
       if (!isFetched) {
         fetchedProduct = await getProduct(product.id);
       }
-      newCart[product.id] = { ...fetchedProduct, quantity: 1 };
+      newCart[product.id] = {
+        ...fetchedProduct,
+        quantity: 1,
+        selectedAttributes: selectedAttributes,
+      };
     }
 
     ++newTotalQuantity;
+    console.log(newCart);
     this.setState({
       cart: newCart,
       totalQuantity: newTotalQuantity,
     });
   }
 
-  onRemoveFromCartHandler(id) {
+  onRemoveFromCartHandler(id, removeAll = false) {
     // check if the Product exist in the cart =>
     // if Quantity > 1 => decrease the Quantity by 1
     // if not remove the product from the cart
@@ -57,14 +63,18 @@ class ProductProvider extends Component {
     // check if product not exist in cart
     if (!newCart.hasOwnProperty(id)) return;
 
-    if (newCart[id].quantity > 1) {
-      --newCart[id].quantity;
+    // TODO: refactor
+    if (!removeAll) {
+      if (newCart[id].quantity > 1) {
+        --newCart[id].quantity;
+      } else {
+        delete newCart[id];
+      }
+      --newTotalQuantity;
     } else {
+      newTotalQuantity -= newCart[id].quantity;
       delete newCart[id];
     }
-
-    --newTotalQuantity;
-
     this.setState({
       cart: newCart,
       totalQuantity: newTotalQuantity,

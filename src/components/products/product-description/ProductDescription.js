@@ -11,6 +11,7 @@ import ProductTitle from '../../ui/product-title/ProductTitle';
 import Button from '../../ui/button/Button';
 
 import classes from './ProductDescription.module.css';
+import ErrorMessage from '../../ui/error/ErrorMessage';
 
 class ProductDescription extends Component {
   static contextType = ProductContext;
@@ -19,7 +20,11 @@ class ProductDescription extends Component {
     super();
     this.state = {
       product: null,
+      error: null,
+      addedToCart: false,
     };
+    this.selectedAttributes = {};
+    this.addedTimer = null;
   }
 
   async componentDidMount() {
@@ -28,12 +33,40 @@ class ProductDescription extends Component {
     this.setState({ product: fetchedProduct });
   }
 
-  onSubmitFormHandler(event) {
-    event.preventDefault();
+  componentDidUpdate() {
+    if (this.state.addedToCart) {
+      this.addedTimer = setTimeout(
+        () => this.setState({ addedToCart: false }),
+        1000
+      );
+    }
   }
 
-  onChangeValueHandler(e, id) {
-    // console.log(id);
+  componentWillUnmount() {
+    clearTimeout(this.addedTimer);
+  }
+
+  onSubmitFormHandler(event) {
+    event.preventDefault();
+    // check all attributes is selected && add to cart with selected attributes value
+    if (
+      this.state.product.attributes.length !==
+      Object.keys(this.selectedAttributes).length
+    ) {
+      this.setState({ error: 'Must select all attributes!' });
+      return;
+    }
+
+    this.context.addToCart(this.state.product, true, this.selectedAttributes);
+    this.setState({ error: null, addedToCart: true });
+  }
+
+  onChangeValueHandler(event, id) {
+    if (this.selectedAttributes[id]) {
+      this.selectedAttributes[id].push(event.target.value);
+      return;
+    }
+    this.selectedAttributes[id] = [event.target.value];
   }
 
   render() {
@@ -49,13 +82,14 @@ class ProductDescription extends Component {
         <div className={classes.productDescription}>
           <SelectableImages images={this.state.product.gallery} />
           <form
-            onSubmit={this.onSubmitFormHandler}
+            onSubmit={(e) => this.onSubmitFormHandler(e)}
             className={classes.productContent}
           >
             <ProductTitle
               brand={this.state.product.brand}
               title={this.state.product.name}
             />
+            {this.state.error && <ErrorMessage errorTxt={this.state.error} />}
             {this.state.product.attributes.map((attribute) => (
               <RadioGroup
                 key={attribute.id}
@@ -70,8 +104,15 @@ class ProductDescription extends Component {
                 {productPrice.amount.toFixed(2)}
               </span>
             </p>
-            <Button type='submit'> ADD TO CART </Button>
-            <div className={classes.description} dangerouslySetInnerHTML={{__html: `${this.state.product.description}`}}></div>
+            <Button type='submit'>
+              {!this.state.addedToCart ? 'ADD TO CART' : 'ADDED!'}
+            </Button>
+            <div
+              className={classes.description}
+              dangerouslySetInnerHTML={{
+                __html: `${this.state.product.description}`,
+              }}
+            ></div>
           </form>
         </div>
       )

@@ -13,6 +13,7 @@ class RadioButton extends Component {
             name={this.props.name}
             value={this.props.value}
             id={`#${this.props.id}`}
+            defaultChecked={this.props.checked}
           />
           <label htmlFor={`#${this.props.id}`}> {this.props.value} </label>
         </div>
@@ -24,6 +25,7 @@ class RadioButton extends Component {
           name={this.props.name}
           value={this.props.value}
           style={{ backgroundColor: `${this.props.value}` }}
+          defaultChecked={this.props.checked}
         />
       ),
     };

@@ -61,7 +61,7 @@ class ProductList extends Component {
   }
 
   onRemoveFromCartHandler(id) {
-    this.context.removeFromCart(id);
+    this.context.removeFromCart(id, true);
   }
 
   isProductInCartHandler(id) {

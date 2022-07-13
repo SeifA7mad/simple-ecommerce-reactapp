@@ -13,12 +13,26 @@ class RadioGroup extends Component {
         value={item.value}
         name={this.props.attribute.name}
         id={`${this.props.attribute.id}${item.id}`}
+        checked={
+          this.props.selectedAttributes
+            ? this.props.selectedAttributes.hasOwnProperty(
+                this.props.attribute.id
+              ) &&
+              this.props.selectedAttributes[this.props.attribute.id] ===
+                item.value
+            : null
+        }
       />
     ));
     return (
       <div className={classes.radioGroup}>
-        <label className={classes.radioGroupLable}> {this.props.attribute.name}: </label>
-        <div onChange={this.props.onChange} className={classes.radioAttributes}>{radioButtons}</div>
+        <label className={classes.radioGroupLable}>
+          {' '}
+          {this.props.attribute.name}:{' '}
+        </label>
+        <div onChange={this.props.onChange} className={classes.radioAttributes}>
+          {radioButtons}
+        </div>
       </div>
     );
   }

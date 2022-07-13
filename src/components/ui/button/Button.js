@@ -15,6 +15,7 @@ class Button extends Component {
           type='submit'
           onClick={this.props.onClick}
           className={classes.button}
+          disabled={this.props.disabled}
         >
           {this.props.children}
         </button>
