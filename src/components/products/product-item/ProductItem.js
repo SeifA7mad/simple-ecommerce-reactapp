@@ -10,26 +10,9 @@ class ProductItem extends Component {
   constructor() {
     super();
     this.state = {
-      // isHovered: false,
       doesNavigate: false,
     };
   }
-
-  // onMouseOverHandler() {
-  //   this.setState((prevState) => {
-  //     if (!prevState.isHovered) {
-  //       return { isHovered: true };
-  //     }
-  //   });
-  // }
-
-  // onMouseLeaveHandler() {
-  //   this.setState((prevState) => {
-  //     if (prevState.isHovered) {
-  //       return { isHovered: false };
-  //     }
-  //   });
-  // }
 
   onNavigateHandler() {
     this.setState({ doesNavigate: true });
@@ -40,17 +23,8 @@ class ProductItem extends Component {
       return <Navigate to={`/product/${this.props.id}`} replace />;
     }
 
-    // const canAddToCart = !this.props.isAddedToCart && !this.props.isOutOfStock;
-
     return (
-      <Card
-      // onMouseEnter={() =>
-      //   canAddToCart ? this.onMouseOverHandler(this) : null
-      // }
-      // onMouseLeave={() =>
-      //   canAddToCart ? this.onMouseLeaveHandler(this) : null
-      // }
-      >
+      <Card active={this.props.isAddedToCart}>
         <div
           className={`${classes.productItem} ${
             this.props.isOutOfStock ? classes.isOutOfStock : null

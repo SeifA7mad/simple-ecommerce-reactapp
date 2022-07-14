@@ -29,7 +29,8 @@
   background-color: #4ba262;
 }
 .linkButton:hover {
-  background-color: #5ece7b;
+  color: white;
+  background-color: #000000;
 }
 
 /* .button:disabled {

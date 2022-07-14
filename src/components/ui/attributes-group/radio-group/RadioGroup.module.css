@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   margin: 0.5em 0;
-  column-gap: 0.7em;
+  gap: 0.7em;
   flex-wrap: wrap;
   font-size: inherit;
 }

@@ -32,7 +32,7 @@ class CartModal extends Component {
         </div>
         <div className={classes.cartButton}>
           <Button type='link' link='/cart' replace>
-            view Bag
+            View Bag
           </Button>
           <Button type='submit' disabled>
             Checkout
