@@ -1,6 +1,43 @@
 .cartModal {
   font-size: 0.7rem;
-  padding: 1rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.cartModal .cartModalTitle {
+  font-family: Raleway;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cartModal .cartModalTitle span {
+  font-weight: 500;
+}
+
+.cartModal .cartTotal {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cartModal .cartTotal p {
+  font-family: Raleway;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cartModal .cartButton {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cartModal .cartButton * {
+  width: 8.75rem;
+  height: 2.688rem;
 }
 
 @media (min-width: 768px) {

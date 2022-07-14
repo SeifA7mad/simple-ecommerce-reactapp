@@ -1,4 +1,5 @@
 import { Component, Fragment } from 'react';
+import CartDescription from '../../components/cart/cart-description/CartDescription';
 
 import PageTitle from '../../components/ui/page-title/PageTitle';
 
@@ -7,6 +8,7 @@ class Cart extends Component {
     return (
       <Fragment>
         <PageTitle title='cart' />
+        <CartDescription />
       </Fragment>
     );
   }

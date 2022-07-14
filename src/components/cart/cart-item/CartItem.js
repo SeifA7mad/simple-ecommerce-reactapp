@@ -7,6 +7,7 @@ import RadioGroup from '../../ui/attributes-group/radio-group/RadioGroup';
 
 import classes from './CartItem.module.css';
 import ProductPrice from '../../ui/attributes-group/product-price/ProductPrice';
+import ChangeableImages from '../../ui/images-show/ChangeableImages';
 
 class CartItem extends Component {
   render() {
@@ -15,7 +16,7 @@ class CartItem extends Component {
       this.props.selectedCurrency
     );
     return (
-      <div className={classes.cartItem}>
+      <div className={`${classes.cartItem} ${this.props.style}`}>
         <div className={classes.cartItemDescription}>
           <ProductTitle
             brand={this.props.product.brand}
@@ -38,14 +39,10 @@ class CartItem extends Component {
           <p> {this.props.product.quantity} </p>
           <button onClick={this.props.onRemoveFromCart}>-</button>
         </div>
-        <div className={classes.image}>
-          <img
-            src={this.props.product.gallery[0]}
-            loading='lazy'
-            alt='product'
-            placeholder='Product'
-          />
-        </div>
+        <ChangeableImages
+          gallery={this.props.product.gallery}
+          changeable={this.props.changeable}
+        />
       </div>
     );
   }

@@ -1,18 +1,37 @@
 .button {
+  font-size: 1rem;
   width: 18.25rem;
   height: 3.25rem;
+  padding: 0;
+  cursor: pointer;
+  font-family: Raleway;
+}
+
+.submitButton {
+  height: 3.4rem;
   border: none;
   background-color: #5ece7b;
   color: white;
-  font-family: Raleway;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
-.button:hover {
+.linkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  border: solid black 1px;
+  font-weight: bold;
+}
+
+.submitButton:hover {
   background-color: #4ba262;
 }
-
-.button:disabled {
-  background-color: #a24b4b;
+.linkButton:hover {
+  background-color: #5ece7b;
 }
+
+/* .button:disabled {
+  background-color: #a24b4b;
+} */

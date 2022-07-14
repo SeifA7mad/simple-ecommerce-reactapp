@@ -58,7 +58,7 @@ class ProductDescription extends Component {
       return;
     }
 
-    this.context.addToCart(this.state.product, true, this.selectedAttributes);
+    this.context.addToCart(this.state.product, this.selectedAttributes);
     this.setState({ error: null, addedToCart: true });
   }
 

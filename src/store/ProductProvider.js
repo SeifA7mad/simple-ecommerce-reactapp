@@ -16,16 +16,15 @@ class ProductProvider extends Component {
     this.state = defaultState;
   }
 
-  async onAddToCartHandler(product, isFetched = true, selectedAttributes = {}) {
-    // check if the Product exist in the cart => just increase the Quantity
-    // if not =>  push it to the cart with Quantity = 1
-    // always ++totalQuantity
-    // always update totalprice = oldTotalPrice + productPrice
-    // Get the cart and totalQuantity from state to manipulate it
+  async onAddToCartHandler(product, selectedAttributes = {}, isFetched = true) {
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
-    // check if product exist in cart
+    // check if product exist in cart =>
+    // 1. increase the product qunatity
+    // 2. push the each new seleceted product attributes to the selecetedAttributes array
+    // else  =>
+    // just add the product to the cart with quantity = 1
     if (newCart.hasOwnProperty(product.id)) {
       ++newCart[product.id].quantity;
       for (const attributeId in selectedAttributes) {
@@ -34,11 +33,14 @@ class ProductProvider extends Component {
         );
       }
     } else {
-      // fetch the entire product if not fetched & to check if it's still in stock
+      // fetch the entire product if not fetched
       let fetchedProduct = product;
       if (!isFetched) {
         fetchedProduct = await getProduct(product.id);
       }
+
+      // start with an embtyp seleceted attribute obj and
+      // fill it with the array for each seleted value
       const newSelectedAttributes = {};
       for (const attributeId in selectedAttributes) {
         newSelectedAttributes[attributeId] = [selectedAttributes[attributeId]];
@@ -60,33 +62,29 @@ class ProductProvider extends Component {
   }
 
   onRemoveFromCartHandler(id, removeAll = false) {
-    // check if the Product exist in the cart =>
-    // if Quantity > 1 => decrease the Quantity by 1
-    // if not remove the product from the cart
-    // always --totalQuantity
-    // always update totalprice = oldTotalPrice - productPrice
-
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
     // check if product not exist in cart
     if (!newCart.hasOwnProperty(id)) return;
 
-    // TODO: refactor
-    if (!removeAll) {
-      if (newCart[id].quantity > 1) {
-        --newCart[id].quantity;
-        for (const attributeId in newCart[id].selectedAttributes) {
-          newCart[id].selectedAttributes[attributeId].pop();
-        }
-      } else {
-        delete newCart[id];
+    // check if the product quantity is more than 1 && removeAll != true
+    // 1. decrease the Product Quantity & Total Quantity by 1
+    // 2. remove the last selectedAttribute from each attribute section
+    // else =>
+    // 1. decrease the TotalQuantity by the Product Quantity
+    // 2. delete the Product from the cart
+    if (newCart[id].quantity > 1 && !removeAll) {
+      --newCart[id].quantity;
+      for (const attributeId in newCart[id].selectedAttributes) {
+        newCart[id].selectedAttributes[attributeId].pop();
       }
       --newTotalQuantity;
     } else {
       newTotalQuantity -= newCart[id].quantity;
       delete newCart[id];
     }
+
     this.setState({
       cart: newCart,
       totalQuantity: newTotalQuantity,
@@ -103,10 +101,11 @@ class ProductProvider extends Component {
     const currentCurrency = this.state.selectedCurrency.label;
     const cartIdKeys = Object.keys(this.state.cart);
     cartIdKeys.forEach((productId) => {
-      totalPriceAmount += this.state.cart[productId].prices.find(
-        (price) =>
-          price.currency.label.toLowerCase() === currentCurrency.toLowerCase()
-      ).amount;
+      totalPriceAmount +=
+        this.state.cart[productId].prices.find(
+          (price) =>
+            price.currency.label.toLowerCase() === currentCurrency.toLowerCase()
+        ).amount * this.state.cart[productId].quantity;
     });
 
     return totalPriceAmount.toFixed(2);

@@ -18,7 +18,7 @@ class RadioGroup extends Component {
             ? this.props.selectedAttributes.hasOwnProperty(
                 this.props.attribute.id
               ) &&
-              this.props.selectedAttributes[this.props.attribute.id].includes(item.value)
+              this.props.selectedAttributes[this.props.attribute.id].includes(item.value.toString())
             : null
         }
       />

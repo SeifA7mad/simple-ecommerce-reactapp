@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
-  width: 50%;
+  width: 75%;
 }
 
 .cartInputs {
@@ -41,13 +41,3 @@
   background-color: #1d1f2267;
 }
 
-.image {
-  position: relative;
-  font-size: inherit;
-}
-
-.image img {
-  font-size: inherit;
-  width: 12.5em;
-  height: 18em;
-}

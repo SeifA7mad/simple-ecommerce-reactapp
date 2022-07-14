@@ -10,26 +10,26 @@ class ProductItem extends Component {
   constructor() {
     super();
     this.state = {
-      isHovered: false,
+      // isHovered: false,
       doesNavigate: false,
     };
   }
 
-  onMouseOverHandler() {
-    this.setState((prevState) => {
-      if (!prevState.isHovered) {
-        return { isHovered: true };
-      }
-    });
-  }
+  // onMouseOverHandler() {
+  //   this.setState((prevState) => {
+  //     if (!prevState.isHovered) {
+  //       return { isHovered: true };
+  //     }
+  //   });
+  // }
 
-  onMouseLeaveHandler() {
-    this.setState((prevState) => {
-      if (prevState.isHovered) {
-        return { isHovered: false };
-      }
-    });
-  }
+  // onMouseLeaveHandler() {
+  //   this.setState((prevState) => {
+  //     if (prevState.isHovered) {
+  //       return { isHovered: false };
+  //     }
+  //   });
+  // }
 
   onNavigateHandler() {
     this.setState({ doesNavigate: true });
@@ -40,16 +40,16 @@ class ProductItem extends Component {
       return <Navigate to={`/product/${this.props.id}`} replace />;
     }
 
-    const canAddToCart = !this.props.isAddedToCart && !this.props.isOutOfStock;
+    // const canAddToCart = !this.props.isAddedToCart && !this.props.isOutOfStock;
 
     return (
       <Card
-        onMouseEnter={() =>
-          canAddToCart ? this.onMouseOverHandler(this) : null
-        }
-        onMouseLeave={() =>
-          canAddToCart ? this.onMouseLeaveHandler(this) : null
-        }
+      // onMouseEnter={() =>
+      //   canAddToCart ? this.onMouseOverHandler(this) : null
+      // }
+      // onMouseLeave={() =>
+      //   canAddToCart ? this.onMouseLeaveHandler(this) : null
+      // }
       >
         <div
           className={`${classes.productItem} ${
@@ -76,13 +76,9 @@ class ProductItem extends Component {
         {this.props.isOutOfStock && (
           <p className={classes.outOfStock}> OUT OF STOCK </p>
         )}
-        {(this.state.isHovered || this.props.isAddedToCart) && (
+        {this.props.isAddedToCart && (
           <CartIcon
-            onClick={
-              this.props.isAddedToCart
-                ? this.props.onRemoveFromCart
-                : this.props.onAddToCart
-            }
+            onClick={this.props.onRemoveFromCart}
             style={classes.addToCartIcon}
           />
         )}

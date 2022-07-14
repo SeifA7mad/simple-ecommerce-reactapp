@@ -25,7 +25,7 @@ class Modal extends Component {
           this.portalElement
         )} */}
         <div className={`${classes.modal} ${this.props.style}`}>
-          <div>{this.props.children}</div>
+          {this.props.children}
         </div>
       </Fragment>
     );

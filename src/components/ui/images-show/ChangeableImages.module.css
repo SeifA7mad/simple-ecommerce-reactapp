@@ -1,0 +1,44 @@
+.image {
+  position: relative;
+  font-size: inherit;
+}
+
+.image img {
+  font-size: inherit;
+  width: 12.5em;
+  height: 18em;
+}
+
+.image .arrows {
+  position: absolute;
+  right: 0;
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 3.5rem;
+}
+
+.image .arrows div {
+  background-color: rgba(0, 0, 0, 0.73);
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 0.2rem 0.2rem 0;
+  display: inline-block;
+  padding: 0.2rem;
+}
+
+.right {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.left {
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
