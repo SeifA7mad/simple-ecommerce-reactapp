@@ -90,6 +90,7 @@ class ProductDescription extends Component {
             {this.state.product.attributes.map((attribute) => (
               <RadioGroup
                 key={attribute.id}
+                productId={this.state.product.id}
                 attribute={attribute}
                 onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
               />

@@ -12,14 +12,15 @@ class RadioGroup extends Component {
         type={this.props.attribute.type}
         value={item.value}
         name={this.props.attribute.name}
-        id={`${this.props.attribute.id}${item.id}`}
+        id={`${this.props.productId}_${this.props.attribute.id}`}
+        itemId={item.id}
         checked={
           this.props.selectedAttributes
-            ? this.props.selectedAttributes.hasOwnProperty(
-                this.props.attribute.id
-              ) &&
-              this.props.selectedAttributes[this.props.attribute.id].includes(item.value.toString())
-            : null
+            ? this.props.selectedAttributes[this.props.attribute.id] &&
+              this.props.selectedAttributes[this.props.attribute.id].includes(
+                item.value.toString()
+              )
+            : false
         }
       />
     ));

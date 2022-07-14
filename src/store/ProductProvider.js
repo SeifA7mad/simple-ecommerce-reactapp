@@ -54,7 +54,7 @@ class ProductProvider extends Component {
     }
 
     ++newTotalQuantity;
-    console.log(newCart);
+
     this.setState({
       cart: newCart,
       totalQuantity: newTotalQuantity,

@@ -45,7 +45,11 @@ class CartList extends Component {
         changeable={this.props.changeable}
       />
     ));
-    return <div className={`${classes.cartList} ${this.props.style}`}>{products}</div>;
+    return (
+      <div className={`${classes.cartList} ${this.props.cartStyle}`}>
+        {products}
+      </div>
+    );
   }
 }
 

@@ -1,5 +1,26 @@
 .cartList {
-  border-top: solid 1px #E5E5E5;
-  border-bottom: solid 1px #E5E5E5;
+  row-gap: 0;
+}
+.cartItem {
+  border-top: solid 1px #e5e5e5;
+  border-bottom: solid 1px #e5e5e5;
   padding: 2rem 0;
+}
+
+.priceDetails {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: repeat(2, minmax(0, 8rem));
+  grid-template-columns: repeat(2, minmax(0, 8rem));
+  align-items: center;
+  row-gap: 0.3rem;
+  font-family: Raleway;
+  font-size: 1.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1.5rem 0;
+}
+
+.priceDetails * {
+  margin: 0;
 }

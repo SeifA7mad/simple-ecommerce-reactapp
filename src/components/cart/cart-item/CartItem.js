@@ -25,6 +25,7 @@ class CartItem extends Component {
           <ProductPrice productPrice={productPrice} />
           {this.props.product.attributes.map((attribute) => (
             <RadioGroup
+              productId={this.props.product.id}
               key={attribute.id}
               attribute={attribute}
               selectedAttributes={this.props.product.selectedAttributes}
