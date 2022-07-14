@@ -3,7 +3,6 @@ import { Component } from 'react';
 import ProductContext from '../../../store/product-context';
 
 import CartList from '../cart-list/CartList';
-
 import Modal from '../../ui/modal/Modal';
 
 import classes from './CartModal.module.css';

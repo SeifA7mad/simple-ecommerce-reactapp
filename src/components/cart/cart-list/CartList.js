@@ -12,7 +12,18 @@ class CartList extends Component {
     this.selectedAttributes = {};
   }
 
+  componentDidMount() {
+    for (const productId in this.context.cart) {
+      for (const attribute in this.context.cart[productId].selectedAttributes) {
+        this.selectedAttributes[productId] = {};
+        this.selectedAttributes[productId][attribute] =
+          this.context.cart[productId].selectedAttributes[attribute][0];
+      }
+    }
+  }
+
   onAddToCartHandler(product) {
+    console.log(this.selectedAttributes);
     this.context.addToCart(product, true, this.selectedAttributes[product.id]);
   }
 
@@ -33,7 +44,7 @@ class CartList extends Component {
         key={productId}
         product={this.context.cart[productId]}
         selectedCurrency={this.context.selectedCurrency}
-        onAddToCart={() => this.onAddToCartHandler({ id: productId })}
+        onAddToCart={this.onAddToCartHandler.bind(this, { id: productId })}
         onRemoveFromCart={() => this.onRemoveFromCartHandler(productId)}
         onChangeValue={this.onChangeValueAttributeHandler.bind(this)}
       />
