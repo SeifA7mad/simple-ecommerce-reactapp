@@ -13,7 +13,7 @@ class RadioButton extends Component {
             name={this.props.id}
             value={this.props.value}
             id={`${this.props.id}_${this.props.itemId}`}
-            defaultChecked={this.props.checked}
+            defaultChecked={this.props.defaultChecked}
           />
           <label htmlFor={`${this.props.id}_${this.props.itemId}`}>
             {this.props.value}

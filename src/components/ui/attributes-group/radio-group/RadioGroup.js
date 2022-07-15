@@ -17,7 +17,7 @@ class RadioGroup extends Component {
         name={this.props.attribute.name}
         id={`${this.props.productId}_${attributeId}`}
         itemId={item.id}
-        checked={
+        defaultChecked={
           selecetedAttributes
             ? selecetedAttributes[attributeId] &&
               selecetedAttributes[attributeId][
