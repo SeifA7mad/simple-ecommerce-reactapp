@@ -11,6 +11,7 @@ class ProductItem extends Component {
     super();
     this.state = {
       doesNavigate: false,
+      isHovered: false,
     };
   }
 
@@ -18,13 +19,35 @@ class ProductItem extends Component {
     this.setState({ doesNavigate: true });
   }
 
+  onEnterMouseHandler() {
+    this.setState((prevState) => {
+      if (!prevState.isHovered) {
+        return { isHovered: true };
+      }
+    });
+  }
+
+  onExitMouseHandler() {
+    this.setState((prevState) => {
+      if (prevState.isHovered) {
+        return { isHovered: false };
+      }
+    });
+  }
+
   render() {
     if (this.state.doesNavigate) {
       return <Navigate to={`/product/${this.props.id}`} replace />;
     }
 
+    const canAddToCart = !this.props.isAddedToCart && !this.props.isOutOfStock;
+
     return (
-      <Card active={this.props.isAddedToCart}>
+      <Card
+        onMouseEnter={canAddToCart ? this.onEnterMouseHandler.bind(this) : null}
+        onMouseLeave={canAddToCart ? this.onExitMouseHandler.bind(this) : null}
+        active={this.props.isAddedToCart}
+      >
         <div
           className={`${classes.productItem} ${
             this.props.isOutOfStock ? classes.isOutOfStock : null
@@ -50,9 +73,9 @@ class ProductItem extends Component {
         {this.props.isOutOfStock && (
           <p className={classes.outOfStock}> OUT OF STOCK </p>
         )}
-        {this.props.isAddedToCart && (
+        {(this.props.isAddedToCart || this.state.isHovered) && (
           <CartIcon
-            onClick={this.props.onRemoveFromCart}
+            onClick={this.props.isAddedToCart ? this.props.onRemoveFromCart : null}
             style={classes.addToCartIcon}
           />
         )}
