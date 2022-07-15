@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import classes from './ProductTitle.module.css';
 
-class ProductTitle extends Component {
+class ProductTitle extends PureComponent {
   render() {
     return (
       <h2 className={`${classes.productTitle} ${this.props.style}`}>

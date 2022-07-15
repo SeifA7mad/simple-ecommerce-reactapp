@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import classes from './ErrorMessage.module.css';
 
-class ErrorMessage extends Component {
+class ErrorMessage extends PureComponent {
   render() {
-    return <p className={`${classes.errorMessage} ${this.props.style}`}> {this.props.errorTxt} </p>;
+    return (
+      <p className={`${classes.errorMessage} ${this.props.style}`}>
+        {this.props.errorTxt}
+      </p>
+    );
   }
 }
 

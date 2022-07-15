@@ -10,7 +10,7 @@ class Product extends Component {
       <Fragment>
        {this.props.router.params.id && <ProductDescription productId={this.props.router.params.id} />}
       </Fragment>
-    );;
+    );
   }
 }
 

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class CartIcon extends Component {
+class CartIcon extends PureComponent {
   render() {
     return (
       <svg
