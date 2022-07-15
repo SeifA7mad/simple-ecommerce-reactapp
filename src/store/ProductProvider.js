@@ -3,6 +3,7 @@ import { Component } from 'react';
 import ProductContext from './product-context';
 
 import getProduct from '../util/fetch-api/getProduct';
+import getProductPrice from '../util/fetch-api/getProductPrice';
 
 const defaultState = {
   cart: {},
@@ -98,14 +99,12 @@ class ProductProvider extends Component {
   onCalculateTotalPriceHandler() {
     // loop on cart and sum all the product prices of the selected currency
     let totalPriceAmount = 0.0;
-    const currentCurrency = this.state.selectedCurrency.label;
+    const currentCurrency = this.state.selectedCurrency;
     const cartIdKeys = Object.keys(this.state.cart);
     cartIdKeys.forEach((productId) => {
       totalPriceAmount +=
-        this.state.cart[productId].prices.find(
-          (price) =>
-            price.currency.label.toLowerCase() === currentCurrency.toLowerCase()
-        ).amount * this.state.cart[productId].quantity;
+        getProductPrice(this.state.cart[productId].prices, currentCurrency)
+          .amount * this.state.cart[productId].quantity;
     });
 
     return totalPriceAmount.toFixed(2);

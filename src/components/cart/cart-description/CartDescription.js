@@ -15,7 +15,7 @@ class CartDescription extends Component {
 
   render() {
     let cartContent = (
-      <h1> You have no items in your Cart!! Try Adding Some.. </h1>
+      <h3> You have no items in your Cart!! </h3>
     );
 
     if (Object.keys(this.context.cart).length > 0) {

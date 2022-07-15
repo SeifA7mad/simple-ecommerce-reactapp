@@ -42,7 +42,9 @@ class CartList extends Component {
         onRemoveFromCart={() => this.onRemoveFromCartHandler(productId)}
         onChangeValue={this.onChangeValueAttributeHandler.bind(this)}
         style={this.props.itemStyle}
-        changeable={this.props.changeable}
+        changeable={
+          this.props.changeable
+        }
       />
     ));
     return (

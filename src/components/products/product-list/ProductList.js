@@ -56,10 +56,6 @@ class ProductList extends Component {
     }
   }
 
-  // onAddToCartHandler(product) {
-  //   this.context.addToCart(product, false);
-  // }
-
   onRemoveFromCartHandler(id) {
     this.context.removeFromCart(id, true);
   }
@@ -79,7 +75,6 @@ class ProductList extends Component {
         img={product.gallery[0]}
         isOutOfStock={!product.inStock}
         isAddedToCart={this.isProductInCartHandler(product.id)}
-        // onAddToCart={() => this.onAddToCartHandler({id: product.id})}
         onRemoveFromCart={() => this.onRemoveFromCartHandler(product.id)}
       />
     ));

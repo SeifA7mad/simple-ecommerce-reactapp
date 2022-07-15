@@ -42,7 +42,9 @@ class CartItem extends Component {
         </div>
         <ChangeableImages
           gallery={this.props.product.gallery}
-          changeable={this.props.changeable}
+          changeable={
+            this.props.changeable && this.props.product.gallery.length > 1
+          }
         />
       </div>
     );
