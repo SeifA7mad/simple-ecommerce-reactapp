@@ -91,21 +91,21 @@ class ProductDescription extends Component {
                 onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
               />
             ))}
-            <div className={classes.price}>
+            <section className={classes.price}>
               Price: <br /> <ProductPrice productPrice={productPrice} />
-            </div>
+            </section>
             <Button
               type='submit'
               style={this.productInCart ? classes.inCartButton : null}
             >
               {!this.productInCart ? 'ADD TO CART' : 'REMOVE FROM CART!'}
             </Button>
-            <div
+            <section
               className={classes.description}
               dangerouslySetInnerHTML={{
                 __html: `${this.state.product.description}`,
               }}
-            ></div>
+            ></section>
           </form>
         </div>
       )

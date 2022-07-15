@@ -35,11 +35,11 @@ class CartItem extends Component {
             />
           ))}
         </div>
-        <div className={classes.cartInputs}>
+        <section className={classes.cartInputs}>
           <button onClick={this.props.onAddToCart}>+</button>
           <p> {this.props.product.quantity} </p>
           <button onClick={this.props.onRemoveFromCart}>-</button>
-        </div>
+        </section>
         <ChangeableImages
           gallery={this.props.product.gallery}
           changeable={

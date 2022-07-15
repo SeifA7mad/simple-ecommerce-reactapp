@@ -23,21 +23,21 @@ class CartModal extends Component {
           removeFromCart={this.context.removeFromCart}
           selectedCurrency={this.context.selectedCurrency}
         />
-        <div className={classes.cartTotal}>
+        <section className={classes.cartTotal}>
           <p>Total</p>
           <p>
             {this.context.selectedCurrency.symbol}
             {this.context.calculateTotalPrice()}
           </p>
-        </div>
-        <div className={classes.cartButton}>
+        </section>
+        <section className={classes.cartButton}>
           <Button type='link' link='/cart' replace>
             View Bag
           </Button>
           <Button type='submit' disabled>
             Checkout
           </Button>
-        </div>
+        </section>
       </Modal>
     );
   }

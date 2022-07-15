@@ -38,6 +38,7 @@
 }
 
 .cartInputs button:hover {
-  background-color: #1d1f2267;
+  color: white;
+  background-color: black;
 }
 

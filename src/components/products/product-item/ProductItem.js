@@ -39,13 +39,13 @@ class ProductItem extends Component {
             loading='lazy'
             placeholder={this.props.name}
           />
-          <div className={classes.productContent}>
+          <section className={classes.productContent}>
             <p> {this.props.name} </p>
             <p className={classes.price}>
               {this.props.price.symbol}
               {(+this.props.price.amount).toFixed(2)}
             </p>
-          </div>
+          </section>
         </div>
         {this.props.isOutOfStock && (
           <p className={classes.outOfStock}> OUT OF STOCK </p>
