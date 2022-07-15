@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 import ProductContext from './product-context';
 
-import getProduct from '../util/fetch-api/getProduct';
 import getProductPrice from '../util/fetch-api/getProductPrice';
 
 const defaultState = {
@@ -17,7 +16,7 @@ class ProductProvider extends Component {
     this.state = defaultState;
   }
 
-  async onAddToCartHandler(product, selectedAttributes = {}, isFetched = true) {
+  onAddToCartHandler(product, selectedAttributes = {}) {
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
@@ -34,12 +33,6 @@ class ProductProvider extends Component {
         );
       }
     } else {
-      // fetch the entire product if not fetched
-      let fetchedProduct = product;
-      if (!isFetched) {
-        fetchedProduct = await getProduct(product.id);
-      }
-
       // start with an embtyp seleceted attribute obj and
       // fill it with the array for each seleted value
       const newSelectedAttributes = {};
@@ -48,7 +41,7 @@ class ProductProvider extends Component {
       }
 
       newCart[product.id] = {
-        ...fetchedProduct,
+        ...product,
         quantity: 1,
         selectedAttributes: newSelectedAttributes,
       };

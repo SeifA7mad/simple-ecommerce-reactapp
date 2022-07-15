@@ -4,7 +4,7 @@ const ProductContext = createContext({
   cart: {},
   totalQuantity: 0,
   selectedCurrency: null,
-  addToCart(product, selectedAttributes = {}, isFetched = true) {},
+  addToCart(product, selectedAttributes = {}) {},
   removeFromCart(id, removeAll = false) {},
   changeCurrency(currency) {},
   calculateTotalPrice() {},
