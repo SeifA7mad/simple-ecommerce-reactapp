@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import classes from './RadioButton.module.css';
 
@@ -35,4 +35,4 @@ class RadioButton extends Component {
   }
 }
 
-export default RadioButton;
+export default React.memo(RadioButton);

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 class CurrencyIcon extends Component {
   render() {
@@ -21,4 +21,4 @@ class CurrencyIcon extends Component {
   }
 }
 
-export default CurrencyIcon;
+export default React.memo(CurrencyIcon);

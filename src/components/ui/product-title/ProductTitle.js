@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import classes from './ProductTitle.module.css';
 
@@ -12,4 +12,5 @@ class ProductTitle extends Component {
   }
 }
 
-export default ProductTitle;
+export default React.memo(ProductTitle);
+

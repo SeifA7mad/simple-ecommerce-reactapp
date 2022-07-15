@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 class CartIcon extends Component {
   render() {
@@ -22,4 +22,4 @@ class CartIcon extends Component {
   }
 }
 
-export default CartIcon;
+export default React.memo(CartIcon);

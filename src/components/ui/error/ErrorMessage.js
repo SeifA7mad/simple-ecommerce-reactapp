@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import classes from './ErrorMessage.module.css';
 
@@ -8,4 +8,4 @@ class ErrorMessage extends Component {
   }
 }
 
-export default ErrorMessage;
+export default React.memo(ErrorMessage);

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import Card from '../../ui/card/Card';
@@ -61,4 +61,4 @@ class ProductItem extends Component {
   }
 }
 
-export default ProductItem;
+export default React.memo(ProductItem);

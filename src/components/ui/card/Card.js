@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import classes from './Card.module.css';
 
@@ -19,4 +19,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default React.memo(Card);

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import ModalArrow from '../modal/modal-arrow/ModalArrow';
 
@@ -26,4 +26,4 @@ class PageTitle extends Component {
   }
 }
 
-export default PageTitle;
+export default React.memo(PageTitle);

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react';
 
 import classes from './ModalArrow.module.css';
 
@@ -14,4 +14,4 @@ class ModalArrow extends Component {
   }
 }
 
-export default ModalArrow;
+export default React.memo(ModalArrow);

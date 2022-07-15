@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import classes from './ProductPrice.module.css';
 
@@ -13,4 +13,4 @@ class ProductPrice extends Component {
   }
 }
 
-export default ProductPrice;
+export default React.memo(ProductPrice);
