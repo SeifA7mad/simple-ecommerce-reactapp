@@ -10,7 +10,7 @@ class Button extends Component {
         <Link
           to={this.props.link}
           replace={this.props.replace}
-          className={`${classes.button} ${classes.linkButton}`}
+          className={`${classes.button} ${classes.linkButton} ${this.props.style}`}
         >
           {this.props.children}
         </Link>
@@ -19,7 +19,7 @@ class Button extends Component {
         <button
           type='submit'
           onClick={this.props.onClick}
-          className={`${classes.button} ${classes.submitButton}`}
+          className={`${classes.button} ${classes.submitButton} ${this.props.style}`}
           disabled={this.props.disabled}
         >
           {this.props.children}

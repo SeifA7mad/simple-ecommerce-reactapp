@@ -22,29 +22,14 @@ class ProductDescription extends Component {
     this.state = {
       product: null,
       error: null,
-      addedToCart: false,
     };
     this.selectedAttributes = {};
-    this.addedTimer = null;
+    this.productInCart = null;
   }
 
   async componentDidMount() {
-    // TODO: check redrender x2 whyy?
     const fetchedProduct = await getProduct(this.props.productId);
     this.setState({ product: fetchedProduct });
-  }
-
-  componentDidUpdate() {
-    if (this.state.addedToCart) {
-      this.addedTimer = setTimeout(
-        () => this.setState({ addedToCart: false }),
-        1000
-      );
-    }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.addedTimer);
   }
 
   onSubmitFormHandler(event) {
@@ -52,14 +37,19 @@ class ProductDescription extends Component {
     // check all attributes is selected && add to cart with selected attributes value
     if (
       this.state.product.attributes.length !==
-      Object.keys(this.selectedAttributes).length
+        Object.keys(this.selectedAttributes).length &&
+      !this.productInCart
     ) {
       this.setState({ error: 'Must select all attributes!' });
       return;
     }
 
-    this.context.addToCart(this.state.product, this.selectedAttributes);
-    this.setState({ error: null, addedToCart: true });
+    if (!this.productInCart) {
+      this.context.addToCart(this.state.product, this.selectedAttributes);
+      this.setState({ error: null });
+    } else {
+      this.context.removeFromCart(this.state.product.id, true);
+    }
   }
 
   onChangeValueHandler(event, id) {
@@ -73,6 +63,7 @@ class ProductDescription extends Component {
         this.state.product.prices,
         this.context.selectedCurrency
       );
+      this.productInCart = this.context.cart[this.state.product.id];
     }
     return (
       this.state.product && (
@@ -91,6 +82,11 @@ class ProductDescription extends Component {
               <RadioGroup
                 key={attribute.id}
                 productId={this.state.product.id}
+                selectedAttributes={
+                  this.productInCart
+                    ? this.productInCart.selectedAttributes
+                    : null
+                }
                 attribute={attribute}
                 onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
               />
@@ -98,8 +94,11 @@ class ProductDescription extends Component {
             <div className={classes.price}>
               Price: <br /> <ProductPrice productPrice={productPrice} />
             </div>
-            <Button type='submit'>
-              {!this.state.addedToCart ? 'ADD TO CART' : 'ADDED!'}
+            <Button
+              type='submit'
+              style={this.productInCart ? classes.inCartButton : null}
+            >
+              {!this.productInCart ? 'ADD TO CART' : 'REMOVE FROM CART!'}
             </Button>
             <div
               className={classes.description}

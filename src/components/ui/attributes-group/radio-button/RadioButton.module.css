@@ -36,12 +36,10 @@
 .radioButton.swatch {
   width: 2.25em;
   height: 2.25em;
-  border: solid black 1px;
 }
 
 
 .radioButton.swatch:checked {
-  /* border: solid #5ece7b 2px; */
   outline: 2px solid #5ece7b;
   outline-offset: 1px;
 }
