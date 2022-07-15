@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
 import classes from './Backdrop.module.css';
 
@@ -10,4 +10,4 @@ class Backdrop extends Component {
     }
 }
 
-export default Backdrop;
+export default React.memo(Backdrop);

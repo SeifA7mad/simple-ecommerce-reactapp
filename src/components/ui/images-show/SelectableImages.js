@@ -30,7 +30,7 @@ class SelectableImages extends Component {
         alt='product'
         loading='lazy'
         placeholder='Product'
-        onClick={() => this.onChangeSelectedImageHandler(source)}
+        onClick={this.onChangeSelectedImageHandler.bind(this, source)}
       />
     ));
     return (

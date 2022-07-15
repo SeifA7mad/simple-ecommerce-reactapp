@@ -40,6 +40,12 @@
   height: 2.688rem;
 }
 
+.cartList {
+  overflow-y: auto;
+  max-height: 30rem;
+}
+
+
 @media (min-width: 768px) {
   .cartModal {
     position: absolute;

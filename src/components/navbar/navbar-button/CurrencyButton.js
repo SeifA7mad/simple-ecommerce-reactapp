@@ -7,8 +7,6 @@ import ModalArrow from '../../ui/modal/modal-arrow/ModalArrow';
 import classes from './CurrencyButton.module.css';
 
 class CurrencyButton extends Component {
-  // manage direction of arrow
-
   render() {
     return (
       <Button onClick={this.props.onClick}>

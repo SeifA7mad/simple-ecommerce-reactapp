@@ -33,7 +33,7 @@ class Category extends Component {
       <Fragment>
         <PageTitle
           title={this.state.selectedCategory}
-          onClick={() => this.onToggleModalHandler(this)}
+          onClick={this.onToggleModalHandler.bind(this)}
           isModalOpen={this.state.showCategoryModal}
         />
         {this.state.showCategoryModal && (

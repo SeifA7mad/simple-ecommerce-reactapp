@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import ProductItem from '../product-item/ProductItem';
 
 import ProductContext from '../../../store/product-context';
@@ -75,11 +75,11 @@ class ProductList extends Component {
         img={product.gallery[0]}
         isOutOfStock={!product.inStock}
         isAddedToCart={this.isProductInCartHandler(product.id)}
-        onRemoveFromCart={() => this.onRemoveFromCartHandler(product.id)}
+        onRemoveFromCart={this.onRemoveFromCartHandler.bind(this, product.id)}
       />
     ));
     return <div className={classes.productList}>{productItems}</div>;
   }
 }
 
-export default ProductList;
+export default React.memo(ProductList);

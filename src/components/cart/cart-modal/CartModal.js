@@ -22,6 +22,7 @@ class CartModal extends Component {
           addToCart={this.context.addToCart}
           removeFromCart={this.context.removeFromCart}
           selectedCurrency={this.context.selectedCurrency}
+          cartStyle={classes.cartList}
         />
         <section className={classes.cartTotal}>
           <p>Total</p>
