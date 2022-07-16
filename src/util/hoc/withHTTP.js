@@ -1,5 +1,8 @@
 import { useState, useCallback } from 'react';
 
+// NOTE: could just used a class component (Http) with state managment and other component extends this main Component (Http)
+// but in React it perferable to favor composition over inhertance (as in the official docs)
+// else could just implement this logic with the state in every Component but I prefer the abstraction as a Developer.
 const withHTTP = (Component) => {
   // High order component to wrap other class components that needs to fetch an API 
   // the HOC provide the state managment for the HTTP request Loading & Error via props
