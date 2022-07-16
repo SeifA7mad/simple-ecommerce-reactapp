@@ -20,13 +20,10 @@ class ProductProvider extends Component {
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
-    // check if product exist in cart =>
-    // 1. increase the product qunatity
-    // 2. push the each new seleceted product attributes to the selecetedAttributes array
-    // else  =>
-    // just add the product to the cart with quantity = 1
-
     let existingProductKey = product.id;
+    // if attrinutes != null =>
+    // loop on every product in the cart to check if the there is a existing product in the cart that has the same
+    // id & selected attributes if found => change existingProductKey with the founded productKey
     if (attributes) {
       for (const productKey in newCart) {
         if (
@@ -40,6 +37,11 @@ class ProductProvider extends Component {
       }
     }
 
+    // if attributes == null OR there is a existing product in the cart AND have the same selected attributes =>
+    // just increase the product qunatity
+    // else =>
+    // add the new product to the Cart BUT with different key
+    // if the key exist in the cart generate a new key
     if (
       !attributes ||
       (newCart[existingProductKey] &&
@@ -76,10 +78,12 @@ class ProductProvider extends Component {
 
     // check if the product quantity is more than 1 && removeAll != true
     // 1. decrease the Product Quantity & Total Quantity by 1
-    // 2. remove the last selectedAttribute from each attribute section
     // else =>
-    // 1. decrease the TotalQuantity by the Product Quantity
-    // 2. delete the Product from the cart
+    // loop on every productKey in the cart
+    // if the productKey === the id OR (removeAll=true AND the first part of the productKey which is common in
+    // all the product of the same type == id)
+    // 1. decrease the Total Quantity by Product Quantity 
+    // 2. delete theproduct from cart
     if (newCart[id].quantity > 1 && !removeAll) {
       --newCart[id].quantity;
       --newTotalQuantity;

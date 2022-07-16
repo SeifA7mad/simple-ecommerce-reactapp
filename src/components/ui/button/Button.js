@@ -18,6 +18,15 @@ class Button extends Component {
       submit: (
         <button
           type='submit'
+          className={`${classes.button} ${classes.submitButton} ${this.props.style}`}
+          disabled={this.props.disabled}
+        >
+          {this.props.children}
+        </button>
+      ),
+      button: (
+        <button
+          type='button'
           onClick={this.props.onClick}
           className={`${classes.button} ${classes.submitButton} ${this.props.style}`}
           disabled={this.props.disabled}
