@@ -14,6 +14,10 @@
   justify-content: space-around;
 }
 
+.backdrop {
+  background-color: transparent;
+}
+
 .sideModalContent p {
   font-family: Raleway;
   font-weight: bold;

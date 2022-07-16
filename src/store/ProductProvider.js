@@ -16,7 +16,7 @@ class ProductProvider extends Component {
     this.state = defaultState;
   }
 
-  onAddToCartHandler(product, selectedAttributes = {}) {
+  onAddToCartHandler(product, attributes = null) {
     const newCart = structuredClone(this.state.cart);
     let newTotalQuantity = this.state.totalQuantity;
 
@@ -25,29 +25,42 @@ class ProductProvider extends Component {
     // 2. push the each new seleceted product attributes to the selecetedAttributes array
     // else  =>
     // just add the product to the cart with quantity = 1
-    if (newCart.hasOwnProperty(product.id)) {
-      ++newCart[product.id].quantity;
-      for (const attributeId in selectedAttributes) {
-        newCart[product.id].selectedAttributes[attributeId].push(
-          selectedAttributes[attributeId]
-        );
-      }
-    } else {
-      // start with an embtyp seleceted attribute obj and
-      // fill it with the array for each seleted value
-      const newSelectedAttributes = {};
-      for (const attributeId in selectedAttributes) {
-        newSelectedAttributes[attributeId] = [selectedAttributes[attributeId]];
-      }
 
-      newCart[product.id] = {
+    let existingProductKey = product.id;
+    if (attributes) {
+      for (const productKey in newCart) {
+        if (
+          newCart[productKey].id === product.id &&
+          JSON.stringify(newCart[productKey].selectedAttributes) ===
+            JSON.stringify(attributes)
+        ) {
+          existingProductKey = productKey;
+          break;
+        }
+      }
+    }
+
+    if (
+      !attributes ||
+      (newCart[existingProductKey] &&
+        JSON.stringify(newCart[existingProductKey].selectedAttributes) ===
+          JSON.stringify(attributes))
+    ) {
+      ++newCart[existingProductKey].quantity;
+    } else {
+      let newProductId = product.id;
+      if (newCart[product.id]) {
+        newProductId = `${product.id}_${Date.now()}`;
+      }
+      newCart[newProductId] = {
         ...product,
         quantity: 1,
-        selectedAttributes: newSelectedAttributes,
+        selectedAttributes: { ...attributes },
       };
     }
 
     ++newTotalQuantity;
+
     this.setState({
       cart: newCart,
       totalQuantity: newTotalQuantity,
@@ -69,13 +82,15 @@ class ProductProvider extends Component {
     // 2. delete the Product from the cart
     if (newCart[id].quantity > 1 && !removeAll) {
       --newCart[id].quantity;
-      for (const attributeId in newCart[id].selectedAttributes) {
-        newCart[id].selectedAttributes[attributeId].pop();
-      }
       --newTotalQuantity;
     } else {
-      newTotalQuantity -= newCart[id].quantity;
-      delete newCart[id];
+      for (const productKey in newCart) {
+        const productId = productKey.split('_')[0];
+        if (productKey === id || (removeAll && productId === id)) {
+          newTotalQuantity -= newCart[productKey].quantity;
+          delete newCart[productKey];
+        }
+      }
     }
 
     this.setState({

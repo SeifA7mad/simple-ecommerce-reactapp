@@ -17,12 +17,11 @@ class RadioGroup extends Component {
         name={this.props.attribute.name}
         id={`${this.props.productId}_${attributeId}`}
         itemId={item.id}
+        readOnly={this.props.readOnly}
         defaultChecked={
           selecetedAttributes
             ? selecetedAttributes[attributeId] &&
-              selecetedAttributes[attributeId][
-                selecetedAttributes[attributeId].length - 1
-              ] === item.value.toString()
+              selecetedAttributes[attributeId] === item.value.toString()
             : false
         }
       />

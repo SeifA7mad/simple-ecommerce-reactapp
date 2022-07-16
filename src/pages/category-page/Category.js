@@ -39,6 +39,7 @@ class Category extends Component {
         {this.state.showCategoryModal && (
           <CategoryModal
             onChangeCatgeory={this.onChangeSelectedCatgeoryHandler.bind(this)}
+            onClose={this.onToggleModalHandler.bind(this)}
           />
         )}
         <ProductList categoryName={this.state.selectedCategory} />

@@ -49,7 +49,7 @@ class CurrencyModal extends Component {
 
   render() {
     return (
-      <SideModal>
+      <SideModal onClose={this.props.onClose}>
         {this.state.currencies.map((currency, i) => (
           <p
             key={i}

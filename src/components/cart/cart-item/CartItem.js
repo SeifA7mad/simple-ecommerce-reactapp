@@ -25,13 +25,11 @@ class CartItem extends Component {
           <ProductPrice productPrice={productPrice} />
           {this.props.product.attributes.map((attribute) => (
             <RadioGroup
-              productId={this.props.product.id}
+              productId={this.props.productId}
               key={attribute.id}
               attribute={attribute}
               selectedAttributes={this.props.product.selectedAttributes}
-              onChange={(e) =>
-                this.props.onChangeValue(e, this.props.product.id, attribute.id)
-              }
+              readOnly
             />
           ))}
         </div>

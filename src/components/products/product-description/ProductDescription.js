@@ -43,13 +43,16 @@ class ProductDescription extends Component {
       this.setState({ error: 'Must select all attributes!' });
       return;
     }
+    
+    this.context.addToCart(this.state.product, this.selectedAttributes);
+    this.setState({ error: null });
 
-    if (!this.productInCart) {
-      this.context.addToCart(this.state.product, this.selectedAttributes);
-      this.setState({ error: null });
-    } else {
-      this.context.removeFromCart(this.state.product.id, true);
-    }
+    // if (!this.productInCart) {
+    //   this.context.addToCart(this.state.product, this.selectedAttributes);
+    //   this.setState({ error: null });
+    // } else {
+    //   this.context.removeFromCart(this.state.product.id, true);
+    // }
   }
 
   onChangeValueHandler(event, id) {
@@ -96,9 +99,10 @@ class ProductDescription extends Component {
             </section>
             <Button
               type='submit'
-              style={this.productInCart ? classes.inCartButton : null}
+              // style={this.productInCart ? classes.inCartButton : null}
             >
-              {!this.productInCart ? 'ADD TO CART' : 'REMOVE FROM CART!'}
+              {/* {!this.productInCart ? 'ADD TO CART' : 'REMOVE FROM CART!'} */}
+              ADD TO CART
             </Button>
             <section
               className={classes.description}

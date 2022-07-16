@@ -13,6 +13,7 @@ class RadioButton extends Component {
             name={this.props.id}
             value={this.props.value}
             id={`${this.props.id}_${this.props.itemId}`}
+            disabled={this.props.readOnly}
             defaultChecked={this.props.defaultChecked}
           />
           <label htmlFor={`${this.props.id}_${this.props.itemId}`}>
@@ -24,9 +25,10 @@ class RadioButton extends Component {
         <input
           className={`${classes.radioButton} ${classes.swatch}`}
           type='radio'
-          name={this.props.name}
+          name={this.props.id}
           value={this.props.value}
           style={{ backgroundColor: `${this.props.value}` }}
+          disabled={this.props.readOnly}
           defaultChecked={this.props.defaultChecked}
         />
       ),

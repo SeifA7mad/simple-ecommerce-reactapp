@@ -15,7 +15,7 @@ class Modal extends Component {
       <Fragment>
         {this.props.onClose &&
           ReactDom.createPortal(
-            <Backdrop onClose={this.props.onClose} />,
+            <Backdrop onClose={this.props.onClose} style={this.props.backdropStyle} />,
             this.portalElement
           )}
         <div className={`${classes.modal} ${this.props.style}`}>

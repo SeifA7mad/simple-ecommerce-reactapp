@@ -55,7 +55,11 @@ class CategoryModal extends Component {
     );
 
     return (
-      <SideModal style={classes.categoryModal}>
+      <SideModal
+        backdropStyle={classes.backdrop}
+        onClose={this.props.onClose}
+        style={classes.categoryModal}
+      >
         {categoriesModalContent}
       </SideModal>
     );
