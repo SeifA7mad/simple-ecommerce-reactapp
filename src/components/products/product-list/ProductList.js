@@ -94,7 +94,6 @@ class ProductList extends Component {
 
   onSubmitFormHandler(event) {
     event.preventDefault();
-
     // check all attributes is selected && add to cart with selected attributes value
     if (
       this.state.product.attributes.length !==
@@ -109,10 +108,6 @@ class ProductList extends Component {
     this.setState({ error: null, isModalShown: false });
   }
 
-  isProductInCartHandler(id) {
-    return this.context.cart.hasOwnProperty(id);
-  }
-
   render() {
     // map on products to output productItems
     const productItems = this.state.products.map((product) => (
@@ -123,7 +118,7 @@ class ProductList extends Component {
         price={getProductPrice(product.prices, this.context.selectedCurrency)}
         img={product.gallery[0]}
         isOutOfStock={!product.inStock}
-        isAddedToCart={this.isProductInCartHandler(product.id)}
+        isAddedToCart={this.context.cart.hasOwnProperty(product.id)}
         onRemoveFromCart={this.onRemoveFromCartHandler.bind(this, product.id)}
         onShowModal={this.onShowModalHandler.bind(this, product.id)}
       />

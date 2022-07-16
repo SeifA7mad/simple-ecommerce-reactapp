@@ -4,7 +4,7 @@ import ProductContext from '../../../store/product-context';
 
 import SideModal from '../../ui/modal/SideModal';
 
-// import classes from './CurrencyModal.module.css';
+import classes from './CurrencyModal.module.css';
 
 class CurrencyModal extends Component {
   static contextType = ProductContext;
@@ -54,6 +54,11 @@ class CurrencyModal extends Component {
           <p
             key={i}
             onClick={() => this.onChangeSelectedCurrencyHandler(currency)}
+            className={
+              this.context.selectedCurrency.label === currency.label
+                ? classes.active
+                : null
+            }
           >
             {currency.symbol} {currency.label}
           </p>
