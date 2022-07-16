@@ -7,7 +7,7 @@ import getProductPrice from '../util/fetch-api/getProductPrice';
 const defaultState = {
   cart: {},
   totalQuantity: 0,
-  selectedCurrency: { label: 'usd', symbol: '$' },
+  selectedCurrency: { label: 'USD', symbol: '$' },
 };
 
 class ProductProvider extends Component {

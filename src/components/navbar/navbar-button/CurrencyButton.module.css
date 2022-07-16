@@ -1,5 +1,7 @@
-.icon {
-  width: 2rem;
+.currencySymbol {
+  font-size: 1.5rem;
+  font-style: normal;
+  margin: 0;
 }
 
 .arrow {

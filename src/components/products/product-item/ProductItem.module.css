@@ -46,15 +46,20 @@
 }
 
 .addToCartIcon {
-  width: 1.6rem;
   position: absolute;
   right: 2rem;
-  bottom: 17%;
-  color: white;
+  bottom: 19%;
   background-color: #5ece7b;
   text-align: center;
   border-radius: 50%;
   padding: 0.8rem;
   border: none;
   cursor: pointer;
+}
+
+.cartIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.6rem;
 }

@@ -74,14 +74,16 @@ class ProductItem extends Component {
           <p className={classes.outOfStock}> OUT OF STOCK </p>
         )}
         {(this.props.isAddedToCart || this.state.isHovered) && (
-          <CartIcon
+          <span
+            className={classes.addToCartIcon}
             onClick={
               this.props.isAddedToCart
                 ? this.props.onRemoveFromCart
                 : this.props.onShowModal
             }
-            style={classes.addToCartIcon}
-          />
+          >
+            <CartIcon style={classes.cartIcon} color='#ffff' />
+          </span>
         )}
       </Card>
     );
