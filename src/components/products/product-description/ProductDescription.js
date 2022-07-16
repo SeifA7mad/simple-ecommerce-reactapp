@@ -99,7 +99,7 @@ class ProductDescription extends Component {
                 style={classes.inCartButton}
                 onClick={this.onRemoveFromCartHandler.bind(this)}
               >
-                REMOVE FROM CART
+                REMOVE ALL FROM CART
               </Button>
             )}
             <section
