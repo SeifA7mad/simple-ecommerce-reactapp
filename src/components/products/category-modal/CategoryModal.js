@@ -10,7 +10,7 @@ class CategoryModal extends Component {
     this.state = { availableCategories: [] };
   }
 
-  async fetchCategories() {
+  async componentDidMount() {
     const graphqlQuery = {
       query: `query {
           categories {
@@ -26,6 +26,10 @@ class CategoryModal extends Component {
         body: JSON.stringify(graphqlQuery),
       });
 
+      if (!response.ok) {
+        return;
+      }
+
       const resData = await response.json();
 
       const categories = resData.data.categories.map((c) => c.name);
@@ -38,17 +42,10 @@ class CategoryModal extends Component {
     }
   }
 
-  componentDidMount() {
-    this.fetchCategories();
-  }
-
   render() {
     const categoriesModalContent = this.state.availableCategories.map(
       (categoryName, i) => (
-        <p
-          key={i}
-          onClick={() => this.props.onChangeCatgeory(categoryName)}
-        >
+        <p key={i} onClick={() => this.props.onChangeCatgeory(categoryName)}>
           {categoryName}
         </p>
       )

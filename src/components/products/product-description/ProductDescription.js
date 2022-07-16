@@ -13,6 +13,7 @@ import Button from '../../ui/button/Button';
 import classes from './ProductDescription.module.css';
 import ErrorMessage from '../../ui/error/ErrorMessage';
 import ProductPrice from '../../ui/attributes-group/product-price/ProductPrice';
+import LoadingSpinner from '../../ui/loading-spinner/LoadingSpinner';
 
 class ProductDescription extends Component {
   static contextType = ProductContext;
@@ -22,13 +23,14 @@ class ProductDescription extends Component {
     this.state = {
       product: null,
       error: null,
+      isLoading: true,
     };
     this.selectedAttributes = {};
   }
 
   async componentDidMount() {
     const fetchedProduct = await getProduct(this.props.productId);
-    this.setState({ product: fetchedProduct });
+    this.setState({ product: fetchedProduct, isLoading: false });
   }
 
   onSubmitFormHandler(event) {
@@ -44,7 +46,7 @@ class ProductDescription extends Component {
     }
 
     this.context.addToCart(this.state.product, this.selectedAttributes);
-    this.setState({ error: null});
+    this.setState({ error: null });
   }
 
   onRemoveFromCartHandler() {
@@ -66,51 +68,51 @@ class ProductDescription extends Component {
       productInCart = this.context.cart.hasOwnProperty(this.state.product.id);
     }
     return (
-      this.state.product && (
-        <div className={classes.productDescription}>
-          <SelectableImages images={this.state.product.gallery} />
-          <form
-            onSubmit={(e) => this.onSubmitFormHandler(e)}
-            className={classes.productContent}
-          >
-            <ProductTitle
-              brand={this.state.product.brand}
-              title={this.state.product.name}
-            />
-            {this.state.error && <ErrorMessage errorTxt={this.state.error} />}
-            {this.state.product.attributes.map((attribute) => (
-              <RadioGroup
-                key={attribute.id}
-                productId={this.state.product.id}
-                attribute={attribute}
-                onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
+      <>
+        {this.state.isLoading && <LoadingSpinner />}
+        {this.state.product && !this.state.isLoading && (
+          <div className={classes.productDescription}>
+            <SelectableImages images={this.state.product.gallery} />
+            <form
+              onSubmit={(e) => this.onSubmitFormHandler(e)}
+              className={classes.productContent}
+            >
+              <ProductTitle
+                brand={this.state.product.brand}
+                title={this.state.product.name}
               />
-            ))}
-            <section className={classes.price}>
-              Price: <br /> <ProductPrice productPrice={productPrice} />
-            </section>
-            <Button type='submit'>
-              ADD TO CART
-            </Button>
-
-            {productInCart && (
-              <Button
-                type='button'
-                style={classes.inCartButton}
-                onClick={this.onRemoveFromCartHandler.bind(this)}
-              >
-                REMOVE ALL FROM CART
-              </Button>
-            )}
-            <section
-              className={classes.description}
-              dangerouslySetInnerHTML={{
-                __html: `${this.state.product.description}`,
-              }}
-            ></section>
-          </form>
-        </div>
-      )
+              {this.state.error && <ErrorMessage errorTxt={this.state.error} />}
+              {this.state.product.attributes.map((attribute) => (
+                <RadioGroup
+                  key={attribute.id}
+                  productId={this.state.product.id}
+                  attribute={attribute}
+                  onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
+                />
+              ))}
+              <section className={classes.price}>
+                Price: <br /> <ProductPrice productPrice={productPrice} />
+              </section>
+              <Button type='submit'>ADD TO CART</Button>
+              {productInCart && (
+                <Button
+                  type='button'
+                  style={classes.inCartButton}
+                  onClick={this.onRemoveFromCartHandler.bind(this)}
+                >
+                  REMOVE ALL FROM CART
+                </Button>
+              )}
+              <section
+                className={classes.description}
+                dangerouslySetInnerHTML={{
+                  __html: `${this.state.product.description}`,
+                }}
+              ></section>
+            </form>
+          </div>
+        )}
+      </>
     );
   }
 }

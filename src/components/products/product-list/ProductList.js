@@ -12,6 +12,7 @@ import Button from '../../ui/button/Button';
 import ErrorMessage from '../../ui/error/ErrorMessage';
 
 import classes from './ProductList.module.css';
+import LoadingSpinner from '../../ui/loading-spinner/LoadingSpinner';
 
 class ProductList extends Component {
   static contextType = ProductContext;
@@ -22,7 +23,7 @@ class ProductList extends Component {
       products: [],
       product: null,
       isModalShown: false,
-      loading: false,
+      isLoading: true,
       error: null
     };
     this.selectedAttributes = {};
@@ -53,7 +54,7 @@ class ProductList extends Component {
 
       const resData = await response.json();
 
-      this.setState({ products: resData.data.category.products });
+      this.setState({ products: resData.data.category.products, isLoading: false });
     } catch (err) {
       console.log(err);
     }
@@ -126,9 +127,15 @@ class ProductList extends Component {
 
     return (
       <>
-        <div className={classes.productList}>{productItems}</div>
+        {this.state.isLoading && <LoadingSpinner />}
+        {!this.state.isLoading && (
+          <div className={classes.productList}>{productItems}</div>
+        )}
         {this.state.isModalShown && (
-          <Modal style={classes.attributesModal} onClose={this.onHideModalHandler.bind(this)}>
+          <Modal
+            style={classes.attributesModal}
+            onClose={this.onHideModalHandler.bind(this)}
+          >
             <form
               className={classes.attributesForm}
               onSubmit={this.onSubmitFormHandler.bind(this)}
