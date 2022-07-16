@@ -1,8 +1,8 @@
 import { Component } from 'react';
 
 import ProductContext from '../../../store/product-context';
+import withHTTP from '../../../util/hoc/withHTTP';
 
-import getProduct from '../../../util/fetch-api/getProduct';
 import getProductPrice from '../../../util/fetch-api/getProductPrice';
 
 import RadioGroup from '../../ui/attributes-group/radio-group/RadioGroup';
@@ -22,15 +22,26 @@ class ProductDescription extends Component {
     super();
     this.state = {
       product: null,
-      error: null,
-      isLoading: true,
+      error: null
     };
     this.selectedAttributes = {};
   }
 
-  async componentDidMount() {
-    const fetchedProduct = await getProduct(this.props.productId);
-    this.setState({ product: fetchedProduct, isLoading: false });
+  componentDidMount() {
+    const graphqlQuery = {
+      query: `
+        query {
+          product(id: "${this.props.productId}") {
+            id name inStock gallery brand description
+            prices { amount currency{ label } }
+            attributes {id name type items {id displayValue value}}
+          }
+        }
+      `,
+    };
+    this.props.http.fetchData(graphqlQuery, (data) => {
+      this.setState({ product: data.product });
+    });
   }
 
   onSubmitFormHandler(event) {
@@ -69,8 +80,11 @@ class ProductDescription extends Component {
     }
     return (
       <>
-        {this.state.isLoading && <LoadingSpinner />}
-        {this.state.product && !this.state.isLoading && (
+        {this.props.http.isLoading && <LoadingSpinner />}
+        {this.props.http.error && (
+          <ErrorMessage errorTxt={this.props.http.error} />
+        )}
+        {this.state.product && (
           <div className={classes.productDescription}>
             <SelectableImages images={this.state.product.gallery} />
             <form
@@ -117,4 +131,4 @@ class ProductDescription extends Component {
   }
 }
 
-export default ProductDescription;
+export default withHTTP(ProductDescription);

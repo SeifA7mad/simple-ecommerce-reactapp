@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import withHTTP from '../../../util/hoc/withHTTP';
+
 import SideModal from '../../ui/modal/SideModal';
 
 import classes from './CategoryModal.module.css';
@@ -19,27 +21,12 @@ class CategoryModal extends Component {
         }`,
     };
 
-    try {
-      const response = await fetch('http://localhost:4000', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(graphqlQuery),
-      });
-
-      if (!response.ok) {
-        return;
-      }
-
-      const resData = await response.json();
-
-      const categories = resData.data.categories.map((c) => c.name);
-
+    this.props.http.fetchData(graphqlQuery, (data) => {
+      const categories = data.categories.map((c) => c.name);
       this.setState({
         availableCategories: categories,
       });
-    } catch (err) {
-      console.log(err);
-    }
+    });
   }
 
   render() {
@@ -63,4 +50,4 @@ class CategoryModal extends Component {
   }
 }
 
-export default CategoryModal;
+export default withHTTP(CategoryModal);

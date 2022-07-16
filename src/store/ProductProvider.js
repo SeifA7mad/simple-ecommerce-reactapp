@@ -83,7 +83,7 @@ class ProductProvider extends Component {
     // if the productKey === the id OR (removeAll=true AND the first part of the productKey which is common in
     // all the product of the same type == id)
     // 1. decrease the Total Quantity by Product Quantity 
-    // 2. delete theproduct from cart
+    // 2. delete the product from cart
     if (newCart[id].quantity > 1 && !removeAll) {
       --newCart[id].quantity;
       --newTotalQuantity;

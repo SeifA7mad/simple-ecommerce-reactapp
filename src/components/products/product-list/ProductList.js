@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ProductItem from '../product-item/ProductItem';
 
 import ProductContext from '../../../store/product-context';
+import withHTTP from '../../../util/hoc/withHTTP';
 
-import getProduct from '../../../util/fetch-api/getProduct';
 import getProductPrice from '../../../util/fetch-api/getProductPrice';
 
 import Modal from '../../ui/modal/Modal';
@@ -23,8 +23,6 @@ class ProductList extends Component {
       products: [],
       product: null,
       isModalShown: false,
-      isLoading: true,
-      error: null
     };
     this.selectedAttributes = {};
   }
@@ -43,21 +41,9 @@ class ProductList extends Component {
         }
       `,
     };
-    try {
-      const response = await fetch('http://localhost:4000', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(graphqlQuery),
-      });
-
-      if (!response.ok) return;
-
-      const resData = await response.json();
-
-      this.setState({ products: resData.data.category.products, isLoading: false });
-    } catch (err) {
-      console.log(err);
-    }
+    this.props.http.fetchData(graphqlQuery, (data) =>
+      this.setState({ products: data.category.products })
+    );
   }
 
   componentDidMount() {
@@ -77,8 +63,20 @@ class ProductList extends Component {
   async onShowModalHandler(productId) {
     this.selectedAttributes = {};
     if (!this.state.product || this.state.product !== productId) {
-      const fetchedProduct = await getProduct(productId);
-      this.setState({ product: fetchedProduct, isModalShown: true });
+      const graphqlQuery = {
+        query: `
+        query {
+          product(id: "${productId}") {
+            id name inStock gallery brand
+            prices { amount currency{ label } }
+            attributes {id name type items {id displayValue value}}
+          }
+        }
+      `,
+      };
+      this.props.http.fetchData(graphqlQuery, (data) => {
+        this.setState({ product: data.product, isModalShown: true });
+      });
       return;
     }
 
@@ -127,8 +125,11 @@ class ProductList extends Component {
 
     return (
       <>
-        {this.state.isLoading && <LoadingSpinner />}
-        {!this.state.isLoading && (
+        {this.props.http.isLoading && <LoadingSpinner />}
+        {this.props.http.error && (
+          <ErrorMessage errorTxt={this.props.http.error} />
+        )}
+        {!this.props.http.isLoading && !this.props.http.error && (
           <div className={classes.productList}>{productItems}</div>
         )}
         {this.state.isModalShown && (
@@ -164,4 +165,4 @@ class ProductList extends Component {
   }
 }
 
-export default React.memo(ProductList);
+export default React.memo(withHTTP(ProductList));

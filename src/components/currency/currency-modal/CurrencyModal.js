@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import ProductContext from '../../../store/product-context';
+import withHTTP from '../../../util/hoc/withHTTP';
 
 import SideModal from '../../ui/modal/SideModal';
 
@@ -16,30 +17,16 @@ class CurrencyModal extends Component {
     };
   }
 
-  async fetchCurrencies() {
+
+  componentDidMount() {
     const graphqlQuery = {
       query: `query {
                 currencies {label symbol}
               }`,
     };
-
-    try {
-      const response = await fetch('http://localhost:4000', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(graphqlQuery),
-      });
-
-      const resData = await response.json();
-
-      this.setState({ currencies: resData.data.currencies });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  componentDidMount() {
-    this.fetchCurrencies();
+    this.props.http.fetchData(graphqlQuery, (data) =>
+      this.setState({ currencies: data.currencies })
+    );
   }
 
   onChangeSelectedCurrencyHandler(currency) {
@@ -68,4 +55,4 @@ class CurrencyModal extends Component {
   }
 }
 
-export default CurrencyModal;
+export default withHTTP(CurrencyModal);
