@@ -19,7 +19,6 @@ class CartItem extends Component {
       <div className={`${classes.cartItem} ${this.props.style}`}>
         <div className={classes.cartItemDescription}>
           <ProductTitle
-            style={classes.title}
             brand={this.props.product.brand}
             title={this.props.product.name}
           />
