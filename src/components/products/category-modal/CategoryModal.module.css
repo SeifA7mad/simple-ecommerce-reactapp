@@ -1,4 +1,6 @@
 .categoryModal {
+  transform: none;
   top: 3.2rem;
   left: -2rem;
+  z-index: 9;
 }

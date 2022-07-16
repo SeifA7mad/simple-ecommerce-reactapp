@@ -1,6 +1,7 @@
 .sideModal {
   position: absolute;
   width: 7rem;
+  transform: none;
   top: 2.5rem;
   left: -2rem;
 }

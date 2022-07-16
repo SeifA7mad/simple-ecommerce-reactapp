@@ -50,6 +50,7 @@
   .cartModal {
     position: absolute;
     width: 20rem;
+    transform: none;
     left: -15rem;
     top: 3rem;
   }

@@ -16,6 +16,9 @@ const getProduct = async (productId) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(graphqlQuery),
     });
+    
+    if (!response.ok) return;
+
     const resData = await response.json();
     return resData.data.product;
   } catch (err) {

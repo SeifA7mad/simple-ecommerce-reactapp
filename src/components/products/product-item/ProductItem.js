@@ -75,7 +75,11 @@ class ProductItem extends Component {
         )}
         {(this.props.isAddedToCart || this.state.isHovered) && (
           <CartIcon
-            onClick={this.props.isAddedToCart ? this.props.onRemoveFromCart : null}
+            onClick={
+              this.props.isAddedToCart
+                ? this.props.onRemoveFromCart
+                : this.props.onShowModal
+            }
             style={classes.addToCartIcon}
           />
         )}

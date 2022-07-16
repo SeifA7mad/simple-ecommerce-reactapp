@@ -27,7 +27,7 @@ class RadioButton extends Component {
           name={this.props.name}
           value={this.props.value}
           style={{ backgroundColor: `${this.props.value}` }}
-          defaultChecked={this.props.checked}
+          defaultChecked={this.props.defaultChecked}
         />
       ),
     };
