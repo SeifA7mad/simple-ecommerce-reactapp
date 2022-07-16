@@ -1,6 +1,10 @@
 import { useState, useCallback } from 'react';
 
 const withHTTP = (Component) => {
+  // High order component to wrap other class components that needs to fetch an API 
+  // the HOC provide the state managment for the HTTP request Loading & Error via props
+  // fetctData function async function to make the HTTP request to the Graphql server
+  // it takes the graphql query as a parameter and takes a callback function to handle the response data
   const ComponentWithHttpProps = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);

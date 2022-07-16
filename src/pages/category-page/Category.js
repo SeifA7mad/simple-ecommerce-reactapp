@@ -1,7 +1,5 @@
 import { Component, Fragment } from 'react';
 
-// import withRouter from '../../util/hoc/withRouter';
-
 import PageTitle from '../../components/ui/page-title/PageTitle';
 import ProductList from '../../components/products/product-list/ProductList';
 import CategoryModal from '../../components/products/category-modal/CategoryModal';
