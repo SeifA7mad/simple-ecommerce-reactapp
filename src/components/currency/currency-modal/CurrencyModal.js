@@ -17,15 +17,14 @@ class CurrencyModal extends Component {
     };
   }
 
-
   componentDidMount() {
-    const graphqlQuery = {
-      query: `query {
+    this.props.http.fetchData(
+      {
+        query: `query {
                 currencies {label symbol}
               }`,
-    };
-    this.props.http.fetchData(graphqlQuery, (data) =>
-      this.setState({ currencies: data.currencies })
+      },
+      (data) => this.setState({ currencies: data.currencies })
     );
   }
 

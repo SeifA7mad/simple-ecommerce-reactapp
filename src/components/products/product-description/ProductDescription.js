@@ -28,20 +28,22 @@ class ProductDescription extends Component {
   }
 
   componentDidMount() {
-    const graphqlQuery = {
-      query: `
-        query {
-          product(id: "${this.props.productId}") {
-            id name inStock gallery brand description
-            prices { amount currency{ label } }
-            attributes {id name type items {id displayValue value}}
+    this.props.http.fetchData(
+      {
+        query: `
+          query {
+            product(id: "${this.props.productId}") {
+              id name inStock gallery brand description
+              prices { amount currency{ label } }
+              attributes {id name type items {id displayValue value}}
+            }
           }
-        }
       `,
-    };
-    this.props.http.fetchData(graphqlQuery, (data) => {
-      this.setState({ product: data.product });
-    });
+      },
+      (data) => {
+        this.setState({ product: data.product });
+      }
+    );
   }
 
   onSubmitFormHandler(event) {

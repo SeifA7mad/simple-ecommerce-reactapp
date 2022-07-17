@@ -13,20 +13,21 @@ class CategoryModal extends Component {
   }
 
   async componentDidMount() {
-    const graphqlQuery = {
-      query: `query {
+    this.props.http.fetchData(
+      {
+        query: `query {
           categories {
             name
           }
         }`,
-    };
-
-    this.props.http.fetchData(graphqlQuery, (data) => {
-      const categories = data.categories.map((c) => c.name);
-      this.setState({
-        availableCategories: categories,
-      });
-    });
+      },
+      (data) => {
+        const categories = data.categories.map((c) => c.name);
+        this.setState({
+          availableCategories: categories,
+        });
+      }
+    );
   }
 
   render() {
