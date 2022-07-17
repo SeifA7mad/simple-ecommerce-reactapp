@@ -30,8 +30,9 @@ class ProductList extends Component {
   async fetchProducts(categoryName) {
     // get product category this.props.category
     // fetch products from API based on category type
-    const graphqlQuery = {
-      query: `
+    this.props.http.fetchData(
+      {
+        query: `
         query {
           category(input: {title: "${categoryName}"}) {
             products {
@@ -40,9 +41,8 @@ class ProductList extends Component {
           }}
         }
       `,
-    };
-    this.props.http.fetchData(graphqlQuery, (data) =>
-      this.setState({ products: data.category.products })
+      },
+      (data) => this.setState({ products: data.category.products })
     );
   }
 
