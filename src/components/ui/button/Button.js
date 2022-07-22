@@ -11,6 +11,7 @@ class Button extends Component {
           to={this.props.link}
           replace={this.props.replace}
           className={`${classes.button} ${classes.linkButton} ${this.props.style}`}
+          onClick={this.props.onClick}
         >
           {this.props.children}
         </Link>

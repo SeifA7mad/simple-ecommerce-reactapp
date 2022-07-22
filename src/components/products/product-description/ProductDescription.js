@@ -109,7 +109,7 @@ class ProductDescription extends Component {
               <section className={classes.price}>
                 Price: <br /> <ProductPrice productPrice={productPrice} />
               </section>
-              <Button type='submit'>ADD TO CART</Button>
+              {this.state.product.inStock && <Button type='submit'>ADD TO CART</Button>}
               {productInCart && (
                 <Button
                   type='button'

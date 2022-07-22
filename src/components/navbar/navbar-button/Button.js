@@ -1,18 +1,11 @@
 import { Component } from 'react';
 
+import classes from './Button.module.css';
+
 class Button extends Component {
   render() {
     return (
-      <button
-        style={{
-          cursor: 'pointer',
-          font: 'inherit',
-          border: 'none',
-          backgroundColor: 'transparent',
-          position: 'relative',
-        }}
-        onClick={this.props.onClick}
-      >
+      <button className={classes.button} onClick={this.props.onClick}>
         {this.props.children}
       </button>
     );

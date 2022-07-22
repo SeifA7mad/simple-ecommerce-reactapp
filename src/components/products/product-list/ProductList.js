@@ -116,6 +116,7 @@ class ProductList extends Component {
         id={product.id}
         key={product.id}
         name={product.name}
+        brand={product.brand}
         price={getProductPrice(product.prices, this.context.selectedCurrency)}
         img={product.gallery[0]}
         isOutOfStock={!product.inStock}

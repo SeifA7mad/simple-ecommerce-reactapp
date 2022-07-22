@@ -52,9 +52,7 @@ class ProductItem extends Component {
           className={`${classes.productItem} ${
             this.props.isOutOfStock ? classes.isOutOfStock : null
           }`}
-          onClick={() =>
-            !this.props.isOutOfStock ? this.onNavigateHandler(this) : null
-          }
+          onClick={() => this.onNavigateHandler(this)}
         >
           <img
             src={this.props.img}
@@ -63,7 +61,10 @@ class ProductItem extends Component {
             placeholder={this.props.name}
           />
           <section className={classes.productContent}>
-            <p> {this.props.name} </p>
+            <p>
+              {' '}
+              {this.props.brand} {this.props.name}{' '}
+            </p>
             <p className={classes.price}>
               {this.props.price.symbol}
               {(+this.props.price.amount).toFixed(2)}

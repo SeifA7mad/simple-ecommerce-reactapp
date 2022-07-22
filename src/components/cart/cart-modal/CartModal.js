@@ -32,7 +32,7 @@ class CartModal extends Component {
           </p>
         </section>
         <section className={classes.cartButton}>
-          <Button type='link' link='/cart' replace>
+          <Button type='link' link='/cart' replace onClick={this.props.onClose}>
             View Bag
           </Button>
           <Button type='submit' disabled>
