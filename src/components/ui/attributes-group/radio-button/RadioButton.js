@@ -8,7 +8,9 @@ class RadioButton extends Component {
       text: (
         <div className={`${classes.radioContainer}`}>
           <input
-            className={`${classes.radioButton}`}
+            className={`${classes.radioButton} ${
+              this.props.miniCart ? classes.mini : null
+            }`}
             type='radio'
             name={this.props.id}
             value={this.props.value}
@@ -16,14 +18,19 @@ class RadioButton extends Component {
             disabled={this.props.readOnly}
             defaultChecked={this.props.defaultChecked}
           />
-          <label htmlFor={`${this.props.id}_${this.props.itemId}`}>
+          <label
+            className={`${this.props.miniCart ? classes.mini : null}`}
+            htmlFor={`${this.props.id}_${this.props.itemId}`}
+          >
             {this.props.value}
           </label>
         </div>
       ),
       swatch: (
         <input
-          className={`${classes.radioButton} ${classes.swatch}`}
+          className={`${classes.radioButton} ${classes.swatch} ${
+            this.props.miniCart ? classes.mini : null
+          }`}
           type='radio'
           name={this.props.id}
           value={this.props.value}

@@ -7,8 +7,23 @@
 .cartItem .cartItemDescription {
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
+  row-gap: 1rem;
   width: 75%;
+}
+
+.cartItem .cartItemDescription.mini {
+  width: 45%;
+  row-gap: 0.5rem;
+}
+
+.productTitle {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.productPrice {
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .cartInputs {
@@ -40,4 +55,9 @@
 .cartInputs button:hover {
   color: white;
   background-color: black;
+}
+
+.changeableimages img {
+  width: 7.563rem;
+  height: 11.875rem;
 }

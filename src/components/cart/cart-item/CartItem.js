@@ -17,18 +17,27 @@ class CartItem extends Component {
     );
     return (
       <div className={`${classes.cartItem} ${this.props.style}`}>
-        <div className={classes.cartItemDescription}>
+        <div
+          className={`${classes.cartItemDescription} ${
+            this.props.miniCart ? classes.mini : null
+          }`}
+        >
           <ProductTitle
             brand={this.props.product.brand}
             title={this.props.product.name}
+            style={this.props.miniCart ? classes.productTitle : null}
           />
-          <ProductPrice productPrice={productPrice} />
+          <ProductPrice
+            productPrice={productPrice}
+            style={this.props.miniCart ? classes.productPrice : null}
+          />
           {this.props.product.attributes.map((attribute) => (
             <RadioGroup
               productId={this.props.productId}
               key={attribute.id}
               attribute={attribute}
               selectedAttributes={this.props.product.selectedAttributes}
+              miniCart={this.props.miniCart}
               readOnly
             />
           ))}
@@ -43,6 +52,7 @@ class CartItem extends Component {
           changeable={
             this.props.changeable && this.props.product.gallery.length > 1
           }
+          style={this.props.miniCart ? classes.changeableimages : null}
         />
       </div>
     );

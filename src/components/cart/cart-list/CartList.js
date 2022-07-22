@@ -26,6 +26,7 @@ class CartList extends Component {
         onRemoveFromCart={this.onRemoveFromCartHandler.bind(this, productKey)}
         style={this.props.itemStyle}
         changeable={this.props.changeable}
+        miniCart={this.props.miniCart}
       />
     ));
     return (

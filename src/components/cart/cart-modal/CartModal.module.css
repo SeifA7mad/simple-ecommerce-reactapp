@@ -1,5 +1,5 @@
 .cartModal {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
@@ -23,10 +23,17 @@
 }
 
 .cartModal .cartTotal p {
+  font-family: Roboto;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.cartModal .cartTotal h2 {
   font-family: Raleway;
   font-size: 1rem;
-  font-weight: bold;
   margin: 0;
+  font-weight: 700;
 }
 
 .cartModal .cartButton {
@@ -45,11 +52,10 @@
   max-height: 31rem;
 }
 
-
 @media (min-width: 768px) {
   .cartModal {
     position: absolute;
-    width: 20rem;
+    width: 20.313rem;
     transform: none;
     left: -15rem;
     top: 3rem;

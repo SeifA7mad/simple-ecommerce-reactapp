@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import DOMPurify from 'dompurify';
 
 import ProductContext from '../../../store/product-context';
 import withHTTP from '../../../util/hoc/withHTTP';
@@ -109,7 +110,9 @@ class ProductDescription extends Component {
               <section className={classes.price}>
                 Price: <br /> <ProductPrice productPrice={productPrice} />
               </section>
-              {this.state.product.inStock && <Button type='submit'>ADD TO CART</Button>}
+              {this.state.product.inStock && (
+                <Button type='submit'>ADD TO CART</Button>
+              )}
               {productInCart && (
                 <Button
                   type='button'
@@ -122,7 +125,7 @@ class ProductDescription extends Component {
               <section
                 className={classes.description}
                 dangerouslySetInnerHTML={{
-                  __html: `${this.state.product.description}`,
+                  __html: `${DOMPurify.sanitize(this.state.product.description)}`,
                 }}
               ></section>
             </form>

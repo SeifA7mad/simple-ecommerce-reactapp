@@ -14,6 +14,11 @@
   cursor: pointer;
 }
 
+.radioButton.mini {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
 .radioContainer label {
   position: absolute;
   margin: auto;
@@ -21,8 +26,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1rem;
+  text-align: center;
   font-family: sans-serif;
+}
+
+.radioContainer label.mini {
+  max-width: 1.8rem;
+  max-height: 1.8rem;
+  word-wrap: break-word;
+  font-size: 0.7rem;
 }
 
 .radioButton:checked {
@@ -39,6 +52,10 @@
   margin-left: 0.2rem;
 }
 
+.radioButton.swatch.mini {
+  width: 1rem;
+  height: 1rem;
+}
 
 .radioButton.swatch:checked {
   outline: 2px solid #5ece7b;

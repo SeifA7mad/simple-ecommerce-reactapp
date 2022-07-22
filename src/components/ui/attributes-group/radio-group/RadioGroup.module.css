@@ -5,9 +5,15 @@
 
 .radioGroup .radioGroupLable {
   font-family: Roboto Condensed;
-  font-weight: bold;
+  font-weight: 700;
   text-align: left;
   font-size: 1.125em;
+}
+
+.radioGroup .radioGroupLable.mini {
+  font-family: Raleway;
+  font-weight: normal;
+  font-size: 0.875rem;
 }
 
 .radioAttributes {

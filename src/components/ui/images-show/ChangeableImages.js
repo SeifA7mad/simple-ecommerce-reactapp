@@ -33,7 +33,7 @@ class ChangeableImages extends Component {
 
   render() {
     return (
-      <div className={classes.image}>
+      <div className={`${classes.image} ${this.props.style}`}>
         <img
           src={this.props.gallery[this.state.currentImage]}
           loading='lazy'

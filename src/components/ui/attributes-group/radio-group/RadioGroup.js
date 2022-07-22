@@ -24,12 +24,20 @@ class RadioGroup extends Component {
               selecetedAttributes[attributeId] === item.value.toString()
             : false
         }
+        miniCart={this.props.miniCart}
       />
     ));
     return (
       <div className={classes.radioGroup}>
-        <label className={classes.radioGroupLable}>
-          {this.props.attribute.name}:
+        <label
+          className={`${classes.radioGroupLable} ${
+            this.props.miniCart ? classes.mini : null
+          }`}
+        >
+          {this.props.miniCart
+            ? this.props.attribute.name
+            : this.props.attribute.name.toUpperCase()}
+          :
         </label>
         <div onChange={this.props.onChange} className={classes.radioAttributes}>
           {radioButtons}

@@ -23,13 +23,14 @@ class CartModal extends Component {
           removeFromCart={this.context.removeFromCart}
           selectedCurrency={this.context.selectedCurrency}
           cartStyle={classes.cartList}
+          miniCart
         />
         <section className={classes.cartTotal}>
           <p>Total</p>
-          <p>
+          <h2>
             {this.context.selectedCurrency.symbol}
             {this.context.calculateTotalPrice()}
-          </p>
+          </h2>
         </section>
         <section className={classes.cartButton}>
           <Button type='link' link='/cart' replace onClick={this.props.onClose}>

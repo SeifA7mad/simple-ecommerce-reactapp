@@ -10,6 +10,7 @@
 
 .productItem img {
   height: 20.625rem;
+  object-fit: scale-down;
 }
 
 .productItem.isOutOfStock {

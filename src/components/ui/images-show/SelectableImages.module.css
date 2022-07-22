@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: fit-content;
   justify-content: space-between;
 }
 
@@ -9,13 +10,14 @@
   width: 25rem;
   height: 18.813rem;
   align-self: center;
+  object-fit: scale-down;
 }
 
 .subImages {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  row-gap: 1rem;
+  justify-content: space-between;
   order: 1;
 }
 
@@ -24,12 +26,15 @@
   height: 5rem;
   margin: 1rem 0;
   cursor: pointer;
+  object-fit: scale-down;
 }
 
 @media (min-width: 1430px) {
   .selectableImages {
     width: 45rem;
     flex-direction: row;
+    row-gap: 1rem;
+    justify-content: flex-start;
   }
   .mainImage {
     width: 38.125rem;
