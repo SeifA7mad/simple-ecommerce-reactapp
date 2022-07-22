@@ -23,9 +23,11 @@ class ProductDescription extends Component {
     super();
     this.state = {
       product: null,
-      error: null
+      addAnimation: false,
+      error: null,
     };
     this.selectedAttributes = {};
+    this.animationTimer = null;
   }
 
   componentDidMount() {
@@ -47,8 +49,23 @@ class ProductDescription extends Component {
     );
   }
 
+  componentDidUpdate() {
+    if (this.state.addAnimation) {
+      this.animationTimer = setTimeout(() => {
+        this.setState({ addAnimation: false });
+      }, 500);
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.animationTimer);
+  }
+
   onSubmitFormHandler(event) {
     event.preventDefault();
+    if (this.state.addAnimation) {
+      return;
+    }
     // check all attributes is selected && add to cart with selected attributes value
     if (
       this.state.product.attributes.length !==
@@ -60,7 +77,7 @@ class ProductDescription extends Component {
     }
 
     this.context.addToCart(this.state.product, this.selectedAttributes);
-    this.setState({ error: null });
+    this.setState({ error: null, addAnimation: true });
   }
 
   onRemoveFromCartHandler() {
@@ -105,13 +122,16 @@ class ProductDescription extends Component {
                   productId={this.state.product.id}
                   attribute={attribute}
                   onChange={(e) => this.onChangeValueHandler(e, attribute.id)}
+                  readOnly={!this.state.product.inStock}
                 />
               ))}
               <section className={classes.price}>
-                Price: <br /> <ProductPrice productPrice={productPrice} />
+                PRICE: <br /> <ProductPrice productPrice={productPrice} />
               </section>
               {this.state.product.inStock && (
-                <Button type='submit'>ADD TO CART</Button>
+                <Button type='submit'>
+                  {this.state.addAnimation ? 'ADDED!' : 'ADD TO CART'}
+                </Button>
               )}
               {productInCart && (
                 <Button
@@ -125,7 +145,9 @@ class ProductDescription extends Component {
               <section
                 className={classes.description}
                 dangerouslySetInnerHTML={{
-                  __html: `${DOMPurify.sanitize(this.state.product.description)}`,
+                  __html: `${DOMPurify.sanitize(
+                    this.state.product.description
+                  )}`,
                 }}
               ></section>
             </form>

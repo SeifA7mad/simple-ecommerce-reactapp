@@ -7,7 +7,7 @@ class Cart extends Component {
   render() {
     return (
       <Fragment>
-        <PageTitle title='cart' style={{fontWeight: 'bold'}} />
+        <PageTitle title='CART' style={{fontWeight: 'bold'}} />
         <CartDescription />
       </Fragment>
     );
