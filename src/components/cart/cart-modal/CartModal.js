@@ -36,7 +36,7 @@ class CartModal extends Component {
           <Button type='link' link='/cart' replace onClick={this.props.onClose}>
             View Bag
           </Button>
-          <Button type='submit' disabled>
+          <Button type='submit'>
             Checkout
           </Button>
         </section>

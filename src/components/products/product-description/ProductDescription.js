@@ -128,12 +128,11 @@ class ProductDescription extends Component {
               <section className={classes.price}>
                 PRICE: <br /> <ProductPrice productPrice={productPrice} />
               </section>
-              {this.state.product.inStock && (
-                <Button type='submit'>
-                  {this.state.addAnimation ? 'ADDED!' : 'ADD TO CART'}
-                </Button>
-              )}
-              {productInCart && (
+
+              <Button disabled={!this.state.product.inStock} type='submit'>
+                {this.state.addAnimation ? 'ADDED!' : 'ADD TO CART'}
+              </Button>
+              {/* {productInCart && (
                 <Button
                   type='button'
                   style={classes.inCartButton}
@@ -141,7 +140,7 @@ class ProductDescription extends Component {
                 >
                   REMOVE ALL FROM CART
                 </Button>
-              )}
+              )} */}
               <section
                 className={classes.description}
                 dangerouslySetInnerHTML={{
