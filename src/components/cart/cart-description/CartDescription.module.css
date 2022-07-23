@@ -24,3 +24,8 @@
 .priceDetails * {
   margin: 0;
 }
+
+.orderButton {
+  width: 17.438rem;
+  height: 2.688rem;
+}

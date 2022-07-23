@@ -47,7 +47,7 @@ class CartDescription extends Component {
               {totalPrice}
             </h4>
           </section>
-          <Button type='submit' disabled>
+          <Button style={classes.orderButton} type='submit' disabled>
             ORDER
           </Button>
         </form>
