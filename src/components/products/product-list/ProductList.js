@@ -62,21 +62,23 @@ class ProductList extends Component {
 
   async onShowModalHandler(productId) {
     this.selectedAttributes = {};
-    if (!this.state.product || this.state.product !== productId) {
+    if (!this.state.product || this.state.product.id !== productId) {
       this.props.http.fetchData(
         {
           query: `
             query {
               product(id: "${productId}") {
-                id name inStock gallery brand
-                prices { amount currency{ label } }
                 attributes {id name type items {id displayValue value}}
               }
             }
         `,
         },
         (data) => {
-          this.setState({ product: data.product, isModalShown: true });
+          const product = this.state.products.find((p) => p.id === productId);
+          this.setState({
+            product: { ...product, attributes: data.product.attributes },
+            isModalShown: true,
+          });
         }
       );
       return;
@@ -98,8 +100,7 @@ class ProductList extends Component {
     // check all attributes is selected && add to cart with selected attributes value
     if (
       this.state.product.attributes.length !==
-        Object.keys(this.selectedAttributes).length &&
-      !this.productInCart
+        Object.keys(this.selectedAttributes).length
     ) {
       this.setState({ error: 'Must select all attributes!' });
       return;

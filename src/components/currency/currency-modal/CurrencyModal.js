@@ -7,25 +7,31 @@ import SideModal from '../../ui/modal/SideModal';
 
 import classes from './CurrencyModal.module.css';
 
+let fetchedCurrencies = [];
+
 class CurrencyModal extends Component {
   static contextType = ProductContext;
-
   constructor() {
     super();
     this.state = {
-      currencies: [],
+      currencies: fetchedCurrencies,
     };
   }
 
   componentDidMount() {
-    this.props.http.fetchData(
-      {
-        query: `query {
+    if (this.state.currencies.length < 1) {
+      this.props.http.fetchData(
+        {
+          query: `query {
                 currencies {label symbol}
               }`,
-      },
-      (data) => this.setState({ currencies: data.currencies })
-    );
+        },
+        (data) => {
+          fetchedCurrencies = data.currencies;
+          this.setState({ currencies: data.currencies });
+        }
+      );
+    }
   }
 
   onChangeSelectedCurrencyHandler(currency) {
