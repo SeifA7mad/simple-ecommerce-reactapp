@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import DOMPurify from 'dompurify';
+import { Markup } from 'interweave';
 
 import ProductContext from '../../../store/product-context';
 import withHTTP from '../../../util/hoc/withHTTP';
@@ -125,14 +125,10 @@ class ProductDescription extends Component {
               <Button disabled={!this.state.product.inStock} type='submit'>
                 {this.state.addAnimation ? 'ADDED!' : 'ADD TO CART'}
               </Button>
-              <section
+              <Markup
                 className={classes.description}
-                dangerouslySetInnerHTML={{
-                  __html: `${DOMPurify.sanitize(
-                    this.state.product.description
-                  )}`,
-                }}
-              ></section>
+                content={this.state.product.description}
+              />
             </form>
           </div>
         )}
