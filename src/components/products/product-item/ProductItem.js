@@ -62,8 +62,7 @@ class ProductItem extends Component {
           />
           <section className={classes.productContent}>
             <p>
-              {' '}
-              {this.props.brand} {this.props.name}{' '}
+              {this.props.brand} {this.props.name}
             </p>
             <p className={classes.price}>
               {this.props.price.symbol}

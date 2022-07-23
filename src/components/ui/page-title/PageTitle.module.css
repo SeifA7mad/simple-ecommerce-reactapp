@@ -20,3 +20,7 @@
 .pageTitle.clickable {
   cursor: pointer;
 }
+
+.pageTitle.boldFont {
+  font-weight: bold;
+}

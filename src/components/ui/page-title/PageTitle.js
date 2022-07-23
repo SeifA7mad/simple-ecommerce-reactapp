@@ -16,8 +16,7 @@ class PageTitle extends Component {
       <h2
         className={`${classes.pageTitle} ${
           this.props.onClick ? classes.clickable : null
-        }`}
-        style={this.props.style}
+        } ${this.props.bold ? classes.boldFont : null}`}
         onClick={this.props.onClick}
       >
         {title} {modalArrow}
