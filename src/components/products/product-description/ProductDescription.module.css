@@ -29,15 +29,6 @@
   margin: 0;
 }
 
-.inCartButton {
-  background-color: #ce5e5e;
-}
-
-.inCartButton:hover {
-  background-color: #a24b4b;
-}
-
-
 @media (min-width: 1430px) {
     .productDescription .productContent {
        width: 35%;

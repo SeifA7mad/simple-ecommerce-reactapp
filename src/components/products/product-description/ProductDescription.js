@@ -80,23 +80,17 @@ class ProductDescription extends Component {
     this.setState({ error: null, addAnimation: true });
   }
 
-  onRemoveFromCartHandler() {
-    this.context.removeFromCart(this.state.product.id, true);
-  }
-
   onChangeValueHandler(event, id) {
     this.selectedAttributes[id] = event.target.value;
   }
 
   render() {
     let productPrice = null;
-    let productInCart = false;
     if (this.state.product) {
       productPrice = getProductPrice(
         this.state.product.prices,
         this.context.selectedCurrency
       );
-      productInCart = this.context.cart.hasOwnProperty(this.state.product.id);
     }
     return (
       <>
@@ -128,19 +122,9 @@ class ProductDescription extends Component {
               <section className={classes.price}>
                 PRICE: <br /> <ProductPrice productPrice={productPrice} />
               </section>
-
               <Button disabled={!this.state.product.inStock} type='submit'>
                 {this.state.addAnimation ? 'ADDED!' : 'ADD TO CART'}
               </Button>
-              {/* {productInCart && (
-                <Button
-                  type='button'
-                  style={classes.inCartButton}
-                  onClick={this.onRemoveFromCartHandler.bind(this)}
-                >
-                  REMOVE ALL FROM CART
-                </Button>
-              )} */}
               <section
                 className={classes.description}
                 dangerouslySetInnerHTML={{

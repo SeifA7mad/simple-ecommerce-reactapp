@@ -8,11 +8,11 @@
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  width: 75%;
+  width: 78%;
 }
 
 .cartItem .cartItemDescription.mini {
-  width: 45%;
+  width: 50%;
   row-gap: 0.5rem;
 }
 
