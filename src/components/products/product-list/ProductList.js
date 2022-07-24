@@ -4,7 +4,7 @@ import ProductItem from '../product-item/ProductItem';
 import ProductContext from '../../../store/product-context';
 import withHTTP from '../../../util/hoc/withHTTP';
 
-import getProductPrice from '../../../util/fetch-api/getProductPrice';
+import getProductPrice from '../../../util/helpers/getProductPrice';
 
 import Modal from '../../ui/modal/Modal';
 import RadioGroup from '../../ui/attributes-group/radio-group/RadioGroup';

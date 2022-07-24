@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import ProductContext from './product-context';
 
-import getProductPrice from '../util/fetch-api/getProductPrice';
+import getProductPrice from '../util/helpers/getProductPrice';
 
 const defaultState = {
   cart: {},

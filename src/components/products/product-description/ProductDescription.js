@@ -4,7 +4,7 @@ import { Markup } from 'interweave';
 import ProductContext from '../../../store/product-context';
 import withHTTP from '../../../util/hoc/withHTTP';
 
-import getProductPrice from '../../../util/fetch-api/getProductPrice';
+import getProductPrice from '../../../util/helpers/getProductPrice';
 
 import RadioGroup from '../../ui/attributes-group/radio-group/RadioGroup';
 import SelectableImages from '../../ui/images-show/SelectableImages';

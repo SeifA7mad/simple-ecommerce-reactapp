@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import getProductPrice from '../../../util/fetch-api/getProductPrice';
+import getProductPrice from '../../../util/helpers/getProductPrice';
 
 import ProductTitle from '../../ui/product-title/ProductTitle';
 import RadioGroup from '../../ui/attributes-group/radio-group/RadioGroup';
