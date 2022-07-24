@@ -29,6 +29,10 @@
   margin: 0;
 }
 
+.productDescription .productContent button:disabled {
+  background-color: #a24b4b;
+}
+
 @media (min-width: 1430px) {
     .productDescription .productContent {
        width: 35%;
