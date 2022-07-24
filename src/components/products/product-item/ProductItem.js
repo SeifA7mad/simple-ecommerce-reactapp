@@ -37,7 +37,7 @@ class ProductItem extends Component {
 
   render() {
     if (this.state.doesNavigate) {
-      return <Navigate to={`/product/${this.props.id}`} replace />;
+      return <Navigate to={`/product/${this.props.id}`} />;
     }
 
     const canAddToCart = !this.props.isAddedToCart && !this.props.isOutOfStock;

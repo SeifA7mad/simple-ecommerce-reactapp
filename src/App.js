@@ -17,7 +17,7 @@ class App extends Component {
             <Route path='/category/:categoryType' element={<Category />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/product/:id' element={<Product />} />
-            <Route path='/' element={<Navigate to='/category/all' />} />
+            <Route path='*' element={<Navigate to='/category/all' replace />} />
           </Routes>
         </Layout>
       </ProductProvider>
