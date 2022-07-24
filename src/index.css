@@ -13,6 +13,9 @@ code {
     monospace;
 }
 
+/* added Google font family */
+@import url("https://fonts.googleapis.com/css?family=Roboto|Raleway|Roboto+Condensed|Source+Sans+Pro");
+
 :root {
   font-size: 10px;
 }
