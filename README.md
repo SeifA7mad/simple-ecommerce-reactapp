@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Note
 
-Try with different Screen Sizes :), CSS Modules was used.
+Try it with different Screen Sizes :), CSS Modules was used.
 Thank you.
 
 ## Available Scripts
