@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import Card from '../../ui/card/Card';
 import CartIcon from '../../cart/CartIcon';
+import OutOfStock from '../../ui/outofstock-label/OutOfStock';
 
 import classes from './ProductItem.module.css';
 
@@ -70,9 +71,7 @@ class ProductItem extends Component {
             </p>
           </section>
         </div>
-        {this.props.isOutOfStock && (
-          <p className={classes.outOfStock}> OUT OF STOCK </p>
-        )}
+        {this.props.isOutOfStock && <OutOfStock />}
         {(this.props.isAddedToCart || this.state.isHovered) && (
           <span
             className={classes.addToCartIcon}

@@ -1,0 +1,10 @@
+.outOfStock {
+  position: absolute;
+  font-family: Raleway;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #8d8f9a;
+  top: 30%;
+  left: 27%;
+  cursor: pointer;
+}
