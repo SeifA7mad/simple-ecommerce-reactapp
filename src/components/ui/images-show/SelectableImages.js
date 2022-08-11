@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import OutOfStock from '../outofstock-label/OutOfStock';
 
 import classes from './SelectableImages.module.css';
 
@@ -34,15 +35,22 @@ class SelectableImages extends Component {
       />
     ));
     return (
-      <div className={classes.selectableImages}>
+      <div
+        className={`${classes.selectableImages} ${
+          this.props.isOutOfStock && classes.isOutOfStock
+        }`}
+      >
         <div className={classes.subImages}>{subImages}</div>
-        <img
-          src={this.state.selectedImage}
-          className={classes.mainImage}
-          alt='product'
-          loading='lazy'
-          placeholder='Product'
-        />
+        <div className={`${classes.mainContainer}`}>
+          <img
+            src={this.state.selectedImage}
+            className={classes.mainImage}
+            alt='product'
+            loading='lazy'
+            placeholder='Product'
+          />
+          {this.props.isOutOfStock && <OutOfStock />}
+        </div>
       </div>
     );
   }

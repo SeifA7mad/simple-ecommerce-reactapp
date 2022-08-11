@@ -100,7 +100,10 @@ class ProductDescription extends Component {
         )}
         {this.state.product && (
           <div className={classes.productDescription}>
-            <SelectableImages images={this.state.product.gallery} />
+            <SelectableImages
+              isOutOfStock={!this.state.product.inStock}
+              images={this.state.product.gallery}
+            />
             <form
               onSubmit={(e) => this.onSubmitFormHandler(e)}
               className={classes.productContent}

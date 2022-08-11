@@ -17,6 +17,10 @@
   opacity: 0.4;
 }
 
+.outOfStock {
+  top: 35%;
+}
+
 .productContent {
   display: flex;
   flex-direction: column;

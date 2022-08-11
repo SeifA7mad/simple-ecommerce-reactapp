@@ -71,7 +71,7 @@ class ProductItem extends Component {
             </p>
           </section>
         </div>
-        {this.props.isOutOfStock && <OutOfStock />}
+        {this.props.isOutOfStock && <OutOfStock style={classes.outOfStock} />}
         {(this.props.isAddedToCart || this.state.isHovered) && (
           <span
             className={classes.addToCartIcon}

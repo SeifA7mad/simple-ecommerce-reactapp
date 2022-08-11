@@ -5,6 +5,15 @@
   justify-content: space-between;
 }
 
+.isOutOfStock {
+  opacity: 0.4;
+}
+
+.mainContainer {
+  position: relative;
+  height: 31.938rem;
+}
+
 .mainImage {
   width: 25rem;
   height: 18.813rem;

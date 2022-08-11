@@ -4,7 +4,8 @@
   font-size: 1.5rem;
   font-weight: 400;
   color: #8d8f9a;
-  top: 30%;
-  left: 27%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   cursor: pointer;
 }
