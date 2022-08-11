@@ -11,13 +11,13 @@
 
 .mainContainer {
   position: relative;
-  height: 31.938rem;
+  height: 20rem;
+  align-self: center;
 }
 
 .mainImage {
   width: 25rem;
   height: 18.813rem;
-  align-self: center;
   object-fit: scale-down;
 }
 
@@ -43,10 +43,13 @@
     flex-direction: row;
     row-gap: 1rem;
   }
+  .mainContainer {
+    height: 31.938rem;
+    align-self: flex-start;
+  }
   .mainImage {
     width: 38.125rem;
     height: 31.938rem;
-    align-self: flex-start;
   }
   .subImages {
     order: 0;
