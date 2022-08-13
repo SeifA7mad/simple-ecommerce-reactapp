@@ -35,16 +35,14 @@ class SelectableImages extends Component {
       />
     ));
     return (
-      <div
-        className={`${classes.selectableImages} ${
-          this.props.isOutOfStock && classes.isOutOfStock
-        }`}
-      >
+      <div className={`${classes.selectableImages}`}>
         <div className={classes.subImages}>{subImages}</div>
         <div className={`${classes.mainContainer}`}>
           <img
             src={this.state.selectedImage}
-            className={classes.mainImage}
+            className={`${classes.mainImage}  ${
+              this.props.isOutOfStock && classes.isOutOfStock
+            }`}
             alt='product'
             loading='lazy'
             placeholder='Product'
